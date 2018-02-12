@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicTransportSystem", "PublicTransportSystem\PublicTransportSystem.csproj", "{C0CB3D95-50EB-49B1-B93E-8829633EDFAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoLayer", "MongoLayer\MongoLayer.csproj", "{E527185C-1A1A-4A37-BAB5-E5E7DEEFABCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C0CB3D95-50EB-49B1-B93E-8829633EDFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0CB3D95-50EB-49B1-B93E-8829633EDFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0CB3D95-50EB-49B1-B93E-8829633EDFAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E527185C-1A1A-4A37-BAB5-E5E7DEEFABCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E527185C-1A1A-4A37-BAB5-E5E7DEEFABCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E527185C-1A1A-4A37-BAB5-E5E7DEEFABCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E527185C-1A1A-4A37-BAB5-E5E7DEEFABCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
