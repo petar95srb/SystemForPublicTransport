@@ -20,11 +20,12 @@ namespace MongoLayer.Models
         public MongoDBRef TimeTable { get; set; }
 
         [BsonExtraElements]
-        public IDictionary<string,BsonDocument> DynamicFields { get; set; }
+        public IDictionary<string,object> DynamicFields { get; set; }
 
 
         public Company()
         {
+            DynamicFields = new Dictionary<string, object>();
             Transports = new List<MongoDBRef>();
         }
     }
