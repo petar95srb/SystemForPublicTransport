@@ -20,8 +20,12 @@ namespace PublicTransportSystem
 
         private void Init_Click(object sender, EventArgs e)
         {
-            InitializationDataModel.InitCompany();
-            InitializationDataModel.InitTimeTable();
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
