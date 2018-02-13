@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ManipulationModels\InitializationDataModel.cs" />
     <Compile Include="Models\Alerts.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\Classic.cs" />
@@ -83,8 +84,6 @@
     <Content Include="MongoDB.Bson.dll" />
     <Content Include="MongoDB.Driver.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ManipulationModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

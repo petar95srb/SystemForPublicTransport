@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MongoLayer.Models
 {
+
     public class Company
     {
         public ObjectId Id { get; set; }
@@ -19,7 +20,7 @@ namespace MongoLayer.Models
         public MongoDBRef TimeTable { get; set; }
 
         [BsonExtraElements]
-        public List<BsonDocument> DynamicFields { get; set; }
+        public IDictionary<string,BsonDocument> DynamicFields { get; set; }
 
 
         public Company()

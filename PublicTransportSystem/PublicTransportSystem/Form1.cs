@@ -1,4 +1,4 @@
-﻿
+﻿using MongoLayer.ManipulationModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,13 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace PublicTransportSystem
 {
-    public class Probica
-    {
-        public string Lol { get; set; }
-    }
     public partial class Form1 : Form
     {
         public Form1()
@@ -23,10 +18,10 @@ namespace PublicTransportSystem
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Init_Click(object sender, EventArgs e)
         {
-           
-            MessageBox.Show("uspeh");
+            InitializationDataModel.InitCompany();
+            InitializationDataModel.InitTimeTable();
         }
     }
 }
