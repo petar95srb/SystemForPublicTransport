@@ -74,7 +74,7 @@
             this.Transports.Name = "Transports";
             this.Transports.Size = new System.Drawing.Size(121, 21);
             this.Transports.TabIndex = 0;
-            this.Transports.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            
             // 
             // Client
             // 
