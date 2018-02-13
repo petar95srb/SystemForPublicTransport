@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,15 @@ namespace MongoLayer.Models
         public string CurrentCond { get; set; }
         public string Type { get; set; }
 
+        public MongoDBRef Transport { get; set; }
+        public MongoDBRef Ride { get; set; }
+
         [BsonExtraElements]
-        public List<BsonDocument> DynamicFields { get; set; }
+        public IDictionary<string, object> DynamicFields { get; set; }
+
+        public Vehical()
+        {
+            DynamicFields = new Dictionary<string, object>();
+        }
     }
 }

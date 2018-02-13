@@ -20,12 +20,11 @@ namespace PublicTransportSystem
 
         private void Init_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            //InitializationDataModel.InitCompany();
+            //InitializationDataModel.InitTimeTable();
+            //InitializationDataModel.JoinCompanyAndTimeTable();
+            //InitializationDataModel.InitVehical();
+            MessageBox.Show("Succes");
         }
     }
 }

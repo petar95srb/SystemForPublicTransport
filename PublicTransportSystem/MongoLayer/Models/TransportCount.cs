@@ -15,6 +15,11 @@ namespace MongoLayer.Models
         public int NumOfRides { get; set; }
 
         [BsonExtraElements]
-        public List<BsonDocument> DynamicFields { get; set; }
+        public IDictionary<string, object> DynamicFields { get; set; }
+
+        public TransportCount()
+        {
+            DynamicFields = new Dictionary<string, object>();
+        }
     }
 }

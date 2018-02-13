@@ -21,6 +21,11 @@ namespace MongoLayer.Models
         public MongoDBRef Vehical { get; set; }
 
         [BsonExtraElements]
-        public List<BsonDocument> DynamicFields { get; set; }
+        public IDictionary<string, object> DynamicFields { get; set; }
+
+        public Ride()
+        {
+            DynamicFields = new Dictionary<string, object>();
+        }
     }
 }
