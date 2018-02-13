@@ -29,19 +29,21 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Alertsbtn = new System.Windows.Forms.Button();
+            this.Adminbtn = new System.Windows.Forms.Button();
+            this.Vihecals = new System.Windows.Forms.Button();
+            this.Timetable = new System.Windows.Forms.Button();
+            this.Client = new System.Windows.Forms.Button();
+            this.Transports = new System.Windows.Forms.ComboBox();
             this.Map = new System.Windows.Forms.Panel();
             this.Info = new System.Windows.Forms.Panel();
-            this.Transports = new System.Windows.Forms.ComboBox();
-            this.Client = new System.Windows.Forms.Button();
-            this.Timetable = new System.Windows.Forms.Button();
-            this.Vihecals = new System.Windows.Forms.Button();
-            this.Adminbtn = new System.Windows.Forms.Button();
-            this.Alertsbtn = new System.Windows.Forms.Button();
+            this.InitDataBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.InitDataBtn);
             this.panel1.Controls.Add(this.Alertsbtn);
             this.panel1.Controls.Add(this.Adminbtn);
             this.panel1.Controls.Add(this.Vihecals);
@@ -52,6 +54,59 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 438);
             this.panel1.TabIndex = 0;
+            // 
+            // Alertsbtn
+            // 
+            this.Alertsbtn.Location = new System.Drawing.Point(39, 234);
+            this.Alertsbtn.Name = "Alertsbtn";
+            this.Alertsbtn.Size = new System.Drawing.Size(121, 23);
+            this.Alertsbtn.TabIndex = 5;
+            this.Alertsbtn.Text = "Alerts";
+            this.Alertsbtn.UseVisualStyleBackColor = true;
+            // 
+            // Adminbtn
+            // 
+            this.Adminbtn.Location = new System.Drawing.Point(39, 193);
+            this.Adminbtn.Name = "Adminbtn";
+            this.Adminbtn.Size = new System.Drawing.Size(121, 23);
+            this.Adminbtn.TabIndex = 4;
+            this.Adminbtn.Text = "Admin";
+            this.Adminbtn.UseVisualStyleBackColor = true;
+            // 
+            // Vihecals
+            // 
+            this.Vihecals.Location = new System.Drawing.Point(39, 152);
+            this.Vihecals.Name = "Vihecals";
+            this.Vihecals.Size = new System.Drawing.Size(121, 23);
+            this.Vihecals.TabIndex = 3;
+            this.Vihecals.Text = "Vihecals";
+            this.Vihecals.UseVisualStyleBackColor = true;
+            // 
+            // Timetable
+            // 
+            this.Timetable.Location = new System.Drawing.Point(39, 113);
+            this.Timetable.Name = "Timetable";
+            this.Timetable.Size = new System.Drawing.Size(121, 23);
+            this.Timetable.TabIndex = 2;
+            this.Timetable.Text = "Time table";
+            this.Timetable.UseVisualStyleBackColor = true;
+            // 
+            // Client
+            // 
+            this.Client.Location = new System.Drawing.Point(39, 71);
+            this.Client.Name = "Client";
+            this.Client.Size = new System.Drawing.Size(121, 23);
+            this.Client.TabIndex = 1;
+            this.Client.Text = "Client";
+            this.Client.UseVisualStyleBackColor = true;
+            // 
+            // Transports
+            // 
+            this.Transports.FormattingEnabled = true;
+            this.Transports.Location = new System.Drawing.Point(39, 32);
+            this.Transports.Name = "Transports";
+            this.Transports.Size = new System.Drawing.Size(121, 21);
+            this.Transports.TabIndex = 0;
             // 
             // Map
             // 
@@ -67,59 +122,15 @@
             this.Info.Size = new System.Drawing.Size(151, 438);
             this.Info.TabIndex = 2;
             // 
-            // Transports
+            // InitDataBtn
             // 
-            this.Transports.FormattingEnabled = true;
-            this.Transports.Location = new System.Drawing.Point(39, 32);
-            this.Transports.Name = "Transports";
-            this.Transports.Size = new System.Drawing.Size(121, 21);
-            this.Transports.TabIndex = 0;
-            
-            // 
-            // Client
-            // 
-            this.Client.Location = new System.Drawing.Point(39, 71);
-            this.Client.Name = "Client";
-            this.Client.Size = new System.Drawing.Size(121, 23);
-            this.Client.TabIndex = 1;
-            this.Client.Text = "Client";
-            this.Client.UseVisualStyleBackColor = true;
-            // 
-            // Timetable
-            // 
-            this.Timetable.Location = new System.Drawing.Point(39, 113);
-            this.Timetable.Name = "Timetable";
-            this.Timetable.Size = new System.Drawing.Size(121, 23);
-            this.Timetable.TabIndex = 2;
-            this.Timetable.Text = "Time table";
-            this.Timetable.UseVisualStyleBackColor = true;
-            // 
-            // Vihecals
-            // 
-            this.Vihecals.Location = new System.Drawing.Point(39, 152);
-            this.Vihecals.Name = "Vihecals";
-            this.Vihecals.Size = new System.Drawing.Size(121, 23);
-            this.Vihecals.TabIndex = 3;
-            this.Vihecals.Text = "Vihecals";
-            this.Vihecals.UseVisualStyleBackColor = true;
-            // 
-            // Adminbtn
-            // 
-            this.Adminbtn.Location = new System.Drawing.Point(39, 193);
-            this.Adminbtn.Name = "Adminbtn";
-            this.Adminbtn.Size = new System.Drawing.Size(121, 23);
-            this.Adminbtn.TabIndex = 4;
-            this.Adminbtn.Text = "Admin";
-            this.Adminbtn.UseVisualStyleBackColor = true;
-            // 
-            // Alertsbtn
-            // 
-            this.Alertsbtn.Location = new System.Drawing.Point(39, 234);
-            this.Alertsbtn.Name = "Alertsbtn";
-            this.Alertsbtn.Size = new System.Drawing.Size(121, 23);
-            this.Alertsbtn.TabIndex = 5;
-            this.Alertsbtn.Text = "Alerts";
-            this.Alertsbtn.UseVisualStyleBackColor = true;
+            this.InitDataBtn.Location = new System.Drawing.Point(39, 273);
+            this.InitDataBtn.Name = "InitDataBtn";
+            this.InitDataBtn.Size = new System.Drawing.Size(121, 23);
+            this.InitDataBtn.TabIndex = 6;
+            this.InitDataBtn.Text = "Init Data";
+            this.InitDataBtn.UseVisualStyleBackColor = true;
+            this.InitDataBtn.Click += new System.EventHandler(this.Init_Click);
             // 
             // Form1
             // 
@@ -147,5 +158,6 @@
         private System.Windows.Forms.Button Vihecals;
         private System.Windows.Forms.Button Timetable;
         private System.Windows.Forms.Button Client;
+        private System.Windows.Forms.Button InitDataBtn;
     }
 }
