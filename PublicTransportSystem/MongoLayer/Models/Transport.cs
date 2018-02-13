@@ -14,6 +14,7 @@ namespace MongoLayer.Models
         public ObjectId Id { get; set; }
 
         public List<MongoDBRef> Vehicals { get; set; }
+        public List<MongoDBRef> Routs { get; set; }
 
         [BsonExtraElements]
         public List<BsonDocument> DynamicFields { get; set; }
@@ -21,6 +22,7 @@ namespace MongoLayer.Models
         public Transport()
         {
             Vehicals = new List<MongoDBRef>();
+            Routs = new List<MongoDBRef>();
         }
     }
 }

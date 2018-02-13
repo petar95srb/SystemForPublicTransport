@@ -10,7 +10,7 @@ namespace MongoLayer.Models
 {
     [BsonDiscriminator(RootClass = true)]
     [BsonKnownTypes(typeof(Classic), typeof(TimeTicket))]
-    public class Ticket
+    public abstract class Ticket
     {
         public ObjectId Id { get; set; }
         public string Type { get; set; }

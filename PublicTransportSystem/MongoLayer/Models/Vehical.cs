@@ -10,7 +10,7 @@ namespace MongoLayer.Models
 {
     [BsonDiscriminator(RootClass = true)]
     [BsonKnownTypes(typeof(Vagon), typeof(Locomotiva),typeof(Bus))]
-    public class Vehical
+    public abstract class Vehical
     {
         public ObjectId Id { get; set; }
         public DateTime LastCheck { get; set; }

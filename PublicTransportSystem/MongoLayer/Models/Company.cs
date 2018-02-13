@@ -16,7 +16,6 @@ namespace MongoLayer.Models
         public string Name { get; set; }
 
         public List<MongoDBRef> Transports { get; set; }
-        public List<MongoDBRef> Routs { get; set; }
         public MongoDBRef TimeTable { get; set; }
 
         [BsonExtraElements]
@@ -26,7 +25,6 @@ namespace MongoLayer.Models
         public Company()
         {
             Transports = new List<MongoDBRef>();
-            Routs = new List<MongoDBRef>();
         }
     }
 }
