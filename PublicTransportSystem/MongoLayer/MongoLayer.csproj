@@ -59,8 +59,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="ManipulationModels\ProbicaModel.cs" />
-    <Compile Include="Models\Probica.cs" />
+    <Compile Include="Models\Alerts.cs" />
+    <Compile Include="Models\Bus.cs" />
+    <Compile Include="Models\Classic.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Locomotiva.cs" />
+    <Compile Include="Models\Ride.cs" />
+    <Compile Include="Models\Route.cs" />
+    <Compile Include="Models\Station.cs" />
+    <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\TimeTable.cs" />
+    <Compile Include="Models\TimeTicket.cs" />
+    <Compile Include="Models\Transport.cs" />
+    <Compile Include="Models\TransportCount.cs" />
+    <Compile Include="Models\Vagon.cs" />
+    <Compile Include="Models\Vehical.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +82,9 @@
   <ItemGroup>
     <Content Include="MongoDB.Bson.dll" />
     <Content Include="MongoDB.Driver.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ManipulationModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

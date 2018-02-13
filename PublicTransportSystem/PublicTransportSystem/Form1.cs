@@ -1,5 +1,4 @@
 ﻿
-using MongoLayer.ManipulationModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +25,6 @@ namespace PublicTransportSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ProbicaModel.InsertProbica();
            
             MessageBox.Show("uspeh");
         }

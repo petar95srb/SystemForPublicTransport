@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MongoLayer.Models
 {
-    class Probica
+    public class Vagon:Vehical
     {
-        public string Lol { get; set; }
+        public int NumOfPassengers { get; set; }
+
     }
 }
