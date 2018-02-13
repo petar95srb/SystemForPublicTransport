@@ -18,13 +18,16 @@ namespace MongoLayer.Models
 
         public MongoDBRef Transport { get; set; }
         public List<MongoDBRef> Stations { get; set; }
+        public List<MongoDBRef> Rides { get; set; }
 
         [BsonExtraElements]
-        public List<BsonDocument> DynamicFields { get; set; }
+        public IDictionary<string, object> DynamicFields { get; set; }
 
         public Route()
         {
             Stations = new List<MongoDBRef>();
+            Rides = new List<MongoDBRef>();
+            DynamicFields = new Dictionary<string, object>();
         }
     }
 }

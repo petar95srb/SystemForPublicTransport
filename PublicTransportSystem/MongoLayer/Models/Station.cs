@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,16 @@ namespace MongoLayer.Models
         public List<int> Lines { get; set; }
         public int Zone { get; set; }
 
+        public List<MongoDBRef> Alerts { get; set; }
+
         [BsonExtraElements]
-        public List<BsonDocument> DynamicFields { get; set; }
-        
+        public IDictionary<string, object> DynamicFields { get; set; }
+
         public Station()
         {
             Lines = new List<int>();
+            DynamicFields = new Dictionary<string, object>();
+            Alerts = new List<MongoDBRef>();
         }
 
     }

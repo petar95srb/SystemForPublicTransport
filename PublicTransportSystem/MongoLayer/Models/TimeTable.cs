@@ -16,6 +16,8 @@ namespace MongoLayer.Models
 
         public List<MongoDBRef> Rides { get; set; }
 
+        public MongoDBRef Company { get; set; }
+
         [BsonExtraElements]
         public IDictionary<string,object> DynamicFields { get; set; }
 

@@ -12,7 +12,12 @@ namespace MongoLayer.Models
     {
         //lista prevoza?
         [BsonExtraElements]
-        public List<BsonDocument> DynamicFields { get; set; }
+        public IDictionary<string, object> DynamicFields { get; set; }
+
+        public Classic() : base()
+        {
+            DynamicFields = new Dictionary<string, object>();
+        }
 
 
     }
