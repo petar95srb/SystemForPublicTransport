@@ -26,5 +26,12 @@ namespace PublicTransportSystem
             //InitializationDataModel.InitVehical();
             MessageBox.Show("Succes");
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
