@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,8 +74,32 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Linija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linija.Designer.cs">
+      <DependentUpon>Linija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NovaLinija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NovaLinija.Designer.cs">
+      <DependentUpon>NovaLinija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NovaStanica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NovaStanica.Designer.cs">
+      <DependentUpon>NovaStanica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stanica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stanica.Designer.cs">
+      <DependentUpon>Stanica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Status_Buy_Ticket.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,11 +124,23 @@
     <Compile Include="Vihecal.Designer.cs">
       <DependentUpon>Vihecal.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linija.resx">
+      <DependentUpon>Linija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NovaLinija.resx">
+      <DependentUpon>NovaLinija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NovaStanica.resx">
+      <DependentUpon>NovaStanica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -109,6 +151,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Stanica.resx">
+      <DependentUpon>Stanica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Status_Buy_Ticket.resx">
       <DependentUpon>Status_Buy_Ticket.cs</DependentUpon>
     </EmbeddedResource>
