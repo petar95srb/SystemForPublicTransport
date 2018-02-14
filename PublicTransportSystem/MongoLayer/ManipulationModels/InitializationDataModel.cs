@@ -102,5 +102,53 @@ namespace MongoLayer.ManipulationModels
 
         }
 
+        public static void InitRoutes()
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionRoute = db.GetCollection<Route>("Route");
+            var collectionStation = db.GetCollection<Station>("Station");
+            var collectionRide = db.GetCollection<Ride>("Ride");
+            var collectionTransport = db.GetCollection<Transport>("Transport");
+            Transport t = new Transport() { Company = new MongoDBRef("Company", ObjectId.Parse("5a833b85de3456315450257c"))};
+            Station s1 = new Station() { Address = "bulevar", Lat = 54, Lon = 32, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
+            Station s2 = new Station() { Address = "bulevar22", Lat = 14, Lon = 22, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
+            Ride rid1 = new Ride() { StartTime = DateTime.Now.AddDays(+1), EndTime = DateTime.Now.AddDays(+2), Late = 0 };
+            Ride rid2 = new Ride() { StartTime = DateTime.Now.AddDays(+3), EndTime = DateTime.Now.AddDays(+4), Late = 5 };
+            Route rout1 = new Route() { Price = 120, Duration = 33, Line = 83 };
+            Route rout2 = new Route() { Price = 180, Duration = 58, Line = 22 };
+  
+            collectionStation.Insert(s1);
+            collectionStation.Insert(s2);
+            collectionTransport.Insert(t);
+           
+            rid1.CurrentStation = new MongoDBRef("Station", s1.Id);
+            rid2.CurrentStation = new MongoDBRef("Station", s2.Id);
+           
+            collectionRide.Insert(rid1);
+            collectionRide.Insert(rid2);
+
+            rout1.Rides.Add(new MongoDBRef("Ride", rid1.Id));
+            rout1.Rides.Add(new MongoDBRef("Ride", rid2.Id));
+            rout2.Rides.Add(new MongoDBRef("Ride", rid1.Id));
+            rout2.Stations.Add(new MongoDBRef("Station", s1.Id));
+            rout2.Stations.Add(new MongoDBRef("Station", s2.Id));
+            rout1.Stations.Add(new MongoDBRef("Station", s2.Id));
+            rout1.Transport = new MongoDBRef("Transport", t.Id);
+           
+            collectionRoute.Insert(rout1);
+            collectionRoute.Insert(rout2);
+
+            rid1.Rout = new MongoDBRef("Route", rout1.Id);
+            rid2.Rout = new MongoDBRef("Route", rout1.Id);
+
+            collectionRide.Save(rid1);
+            collectionRide.Save(rid2);
+
+        }
+
     }
 }

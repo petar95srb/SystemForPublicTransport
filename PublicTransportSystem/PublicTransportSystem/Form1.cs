@@ -1,4 +1,6 @@
-﻿using MongoLayer.ManipulationModels;
+﻿using MongoDB.Driver;
+using MongoLayer.ManipulationModels;
+using MongoLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +22,17 @@ namespace PublicTransportSystem
 
         private void Init_Click(object sender, EventArgs e)
         {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
             //InitializationDataModel.InitCompany();
             //InitializationDataModel.InitTimeTable();
             //InitializationDataModel.JoinCompanyAndTimeTable();
             //InitializationDataModel.InitVehical();
-            MessageBox.Show("Succes");
+            //InitializationDataModel.InitRoutes();
+            var r = RouteModel.GetAllRoutes();
+         
+             MessageBox.Show("Succes");
         }
     }
 }

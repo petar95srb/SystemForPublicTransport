@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ManipulationModels\InitializationDataModel.cs" />
+    <Compile Include="ManipulationModels\RouteModel.cs" />
     <Compile Include="Models\Alerts.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\Classic.cs" />
@@ -75,6 +76,8 @@
     <Compile Include="Models\TransportCount.cs" />
     <Compile Include="Models\Vagon.cs" />
     <Compile Include="Models\Vehical.cs" />
+    <Compile Include="ModelViews\RideView.cs" />
+    <Compile Include="ModelViews\RoutView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
