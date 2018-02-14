@@ -52,6 +52,7 @@
             this.newLine.TabIndex = 0;
             this.newLine.Text = "Dodaj novu liniju";
             this.newLine.UseVisualStyleBackColor = true;
+            this.newLine.Click += new System.EventHandler(this.newLine_Click);
             // 
             // listLines
             // 
@@ -115,6 +116,7 @@
             this.newStation.TabIndex = 4;
             this.newStation.Text = "Dodaj novu stanicu";
             this.newStation.UseVisualStyleBackColor = true;
+            this.newStation.Click += new System.EventHandler(this.newStation_Click);
             // 
             // editVehicle
             // 

@@ -30,78 +30,111 @@
         {
             this.btnSave = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblBroj = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBroj = new System.Windows.Forms.TextBox();
+            this.btnDodajStanicu = new System.Windows.Forms.Button();
+            this.btnObrisiStanicu = new System.Windows.Forms.Button();
+            this.txtDodajStanicu = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(117, 363);
+            this.btnSave.Location = new System.Drawing.Point(93, 410);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(86, 28);
+            this.btnSave.Size = new System.Drawing.Size(105, 43);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(282, 361);
+            this.btnEdit.Location = new System.Drawing.Point(231, 410);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(91, 29);
+            this.btnEdit.Size = new System.Drawing.Size(105, 43);
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(174, 36);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(47, 18);
-            this.lblName.TabIndex = 2;
-            this.lblName.Text = "Linija";
-            // 
-            // lblBroj
-            // 
-            this.lblBroj.AutoSize = true;
-            this.lblBroj.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBroj.Location = new System.Drawing.Point(227, 36);
-            this.lblBroj.Name = "lblBroj";
-            this.lblBroj.Size = new System.Drawing.Size(37, 18);
-            this.lblBroj.TabIndex = 3;
-            this.lblBroj.Text = "broj";
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(196, 160);
+            this.listBox1.Location = new System.Drawing.Point(125, 137);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(177, 160);
+            this.listBox1.Size = new System.Drawing.Size(177, 186);
             this.listBox1.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(126, 160);
+            this.label1.Location = new System.Drawing.Point(68, 137);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 15);
             this.label1.TabIndex = 5;
             this.label1.Text = "Stanice:";
             this.label1.UseMnemonic = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(150, 32);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(66, 20);
+            this.textBox1.TabIndex = 6;
+            this.textBox1.Text = "LINIJA";
+            // 
+            // txtBroj
+            // 
+            this.txtBroj.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBroj.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBroj.Location = new System.Drawing.Point(222, 32);
+            this.txtBroj.Name = "txtBroj";
+            this.txtBroj.ReadOnly = true;
+            this.txtBroj.Size = new System.Drawing.Size(65, 20);
+            this.txtBroj.TabIndex = 7;
+            this.txtBroj.Text = "broj";
+            // 
+            // btnDodajStanicu
+            // 
+            this.btnDodajStanicu.Location = new System.Drawing.Point(339, 206);
+            this.btnDodajStanicu.Name = "btnDodajStanicu";
+            this.btnDodajStanicu.Size = new System.Drawing.Size(109, 28);
+            this.btnDodajStanicu.TabIndex = 8;
+            this.btnDodajStanicu.Text = "Dodaj stanicu";
+            this.btnDodajStanicu.UseVisualStyleBackColor = true;
+            // 
+            // btnObrisiStanicu
+            // 
+            this.btnObrisiStanicu.Location = new System.Drawing.Point(339, 250);
+            this.btnObrisiStanicu.Name = "btnObrisiStanicu";
+            this.btnObrisiStanicu.Size = new System.Drawing.Size(109, 28);
+            this.btnObrisiStanicu.TabIndex = 9;
+            this.btnObrisiStanicu.Text = "Obrisi stanicu";
+            this.btnObrisiStanicu.UseVisualStyleBackColor = true;
+            // 
+            // txtDodajStanicu
+            // 
+            this.txtDodajStanicu.Location = new System.Drawing.Point(339, 159);
+            this.txtDodajStanicu.Name = "txtDodajStanicu";
+            this.txtDodajStanicu.Size = new System.Drawing.Size(109, 20);
+            this.txtDodajStanicu.TabIndex = 10;
+            // 
             // Linija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(481, 465);
+            this.Controls.Add(this.txtDodajStanicu);
+            this.Controls.Add(this.btnObrisiStanicu);
+            this.Controls.Add(this.btnDodajStanicu);
+            this.Controls.Add(this.txtBroj);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.lblBroj);
-            this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnSave);
             this.Name = "Linija";
@@ -115,9 +148,12 @@
 
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label lblBroj;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBroj;
+        private System.Windows.Forms.Button btnDodajStanicu;
+        private System.Windows.Forms.Button btnObrisiStanicu;
+        private System.Windows.Forms.TextBox txtDodajStanicu;
     }
 }

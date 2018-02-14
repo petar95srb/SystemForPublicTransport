@@ -21,5 +21,18 @@ namespace PublicTransportSystem
         {
 
         }
+
+        private void newLine_Click(object sender, EventArgs e)
+        {
+            NovaLinija nl = new NovaLinija();
+            nl.ShowDialog();
+        }
+
+        private void newStation_Click(object sender, EventArgs e)
+        {
+            NovaStanica ns = new NovaStanica();
+            ns.ShowDialog();
+         
+        }
     }
 }

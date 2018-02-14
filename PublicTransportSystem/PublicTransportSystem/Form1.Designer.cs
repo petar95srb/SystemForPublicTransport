@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.InitDataBtn = new System.Windows.Forms.Button();
             this.Alertsbtn = new System.Windows.Forms.Button();
             this.Adminbtn = new System.Windows.Forms.Button();
             this.Vihecals = new System.Windows.Forms.Button();
@@ -37,7 +38,6 @@
             this.Transports = new System.Windows.Forms.ComboBox();
             this.Map = new System.Windows.Forms.Panel();
             this.Info = new System.Windows.Forms.Panel();
-            this.InitDataBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +54,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 438);
             this.panel1.TabIndex = 0;
+            // 
+            // InitDataBtn
+            // 
+            this.InitDataBtn.Location = new System.Drawing.Point(39, 273);
+            this.InitDataBtn.Name = "InitDataBtn";
+            this.InitDataBtn.Size = new System.Drawing.Size(121, 23);
+            this.InitDataBtn.TabIndex = 6;
+            this.InitDataBtn.Text = "Init Data";
+            this.InitDataBtn.UseVisualStyleBackColor = true;
+            this.InitDataBtn.Click += new System.EventHandler(this.Init_Click);
             // 
             // Alertsbtn
             // 
@@ -121,16 +131,6 @@
             this.Info.Name = "Info";
             this.Info.Size = new System.Drawing.Size(151, 438);
             this.Info.TabIndex = 2;
-            // 
-            // InitDataBtn
-            // 
-            this.InitDataBtn.Location = new System.Drawing.Point(39, 273);
-            this.InitDataBtn.Name = "InitDataBtn";
-            this.InitDataBtn.Size = new System.Drawing.Size(121, 23);
-            this.InitDataBtn.TabIndex = 6;
-            this.InitDataBtn.Text = "Init Data";
-            this.InitDataBtn.UseVisualStyleBackColor = true;
-            this.InitDataBtn.Click += new System.EventHandler(this.Init_Click);
             // 
             // Form1
             // 

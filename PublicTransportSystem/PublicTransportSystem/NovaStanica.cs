@@ -10,24 +10,21 @@ using System.Windows.Forms;
 
 namespace PublicTransportSystem
 {
-    public partial class Stanica : Form
+    public partial class NovaStanica : Form
     {
-        public Stanica()
+        public NovaStanica()
         {
             InitializeComponent();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            txtName.ReadOnly = false;
-            txtAdress.ReadOnly = false;
-            txtNapomene.ReadOnly = false;
-            
+
         }
 
-        private void Stanica_Load(object sender, EventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
