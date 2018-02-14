@@ -11,7 +11,8 @@ namespace MongoLayer.Models
 {
     public class Alerts
     {
-        public ObjectId Level { get; set; }
+        public ObjectId Id { get; set; }
+        public int Level { get; set; }
         public string  Description { get; set; }
         public MongoDBRef Station { get; set; }
 

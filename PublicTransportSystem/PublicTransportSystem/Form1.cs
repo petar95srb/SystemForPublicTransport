@@ -25,11 +25,14 @@ namespace PublicTransportSystem
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
             var db = server.GetDatabase("TransportSystem");
-            //InitializationDataModel.InitCompany();
-            //InitializationDataModel.InitTimeTable();
-            //InitializationDataModel.JoinCompanyAndTimeTable();
-            //InitializationDataModel.InitVehical();
-            //InitializationDataModel.InitRoutes();
+            InitializationDataModel.InitCompany();
+            InitializationDataModel.InitTimeTable();
+            InitializationDataModel.JoinCompanyAndTimeTable();
+            InitializationDataModel.InitVehical();
+            InitializationDataModel.InitRoutes();
+            InitializationDataModel.InitAlert();
+            InitializationDataModel.InitTikets();
+            InitializationDataModel.InitTransportCountAndTimeTable();
             var r = RouteModel.GetAllRoutes();
          
              MessageBox.Show("Succes");
