@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PublicTransportSystem
 {
-    public partial class Admin : Form
+    public partial class Stanica : Form
     {
-        public Admin()
+        public Stanica()
         {
             InitializeComponent();
-        }
-
-        private void Admin_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

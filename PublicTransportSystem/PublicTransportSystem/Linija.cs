@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PublicTransportSystem
 {
-    public partial class Admin : Form
+    public partial class Linija : Form
     {
-        public Admin()
+        public Linija()
         {
             InitializeComponent();
-        }
-
-        private void Admin_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
