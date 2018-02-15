@@ -118,7 +118,15 @@ namespace MongoLayer.ManipulationModels
             var Company = (from c in collectionCompany.AsQueryable<Company>() select c).FirstOrDefault();
             Transport t = new Transport() { Type="Brod"};
             Station s1 = new Station() { Address = "bulevar", Lat = 54, Lon = 32, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
-            Station s2 = new Station() { Address = "bulevar22", Lat = 14, Lon = 22, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
+            Station s2 = new Station() { Address = "bulevar22", Lat = 389, Lon = 349, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
+            Station s3 = new Station() { Address = "bulevar", Lat = 289, Lon = 239, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
+            Station s4 = new Station() { Address = "bulevar22", Lat = 420, Lon = 200, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
+            Station s5 = new Station() { Address = "bulevar", Lat = 480, Lon = 423, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
+            Station s6 = new Station() { Address = "bulevar22", Lat = 49, Lon = 30, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
+            Station s7 = new Station() { Address = "bulevar", Lat = 392, Lon = 93, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
+            Station s8 = new Station() { Address = "bulevar22", Lat =380, Lon = 55, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
+            Station s9 = new Station() { Address = "bulevar", Lat = 92, Lon = 320, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
+            Station s10 = new Station() { Address = "bulevar22", Lat = 140, Lon = 220, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
             Ride rid1 = new Ride() { StartTime = DateTime.Now.AddDays(+1), EndTime = DateTime.Now.AddDays(+2), Late = 0 };
             Ride rid2 = new Ride() { StartTime = DateTime.Now.AddDays(+3), EndTime = DateTime.Now.AddDays(+4), Late = 5 };
             Route rout1 = new Route() { Price = 120, Duration = 33, Line = 83 };
@@ -131,6 +139,15 @@ namespace MongoLayer.ManipulationModels
             }
             collectionStation.Insert(s1);
             collectionStation.Insert(s2);
+            collectionStation.Insert(s3);
+            collectionStation.Insert(s4);
+            collectionStation.Insert(s5);
+            collectionStation.Insert(s6);
+            collectionStation.Insert(s7);
+            collectionStation.Insert(s8);
+            collectionStation.Insert(s9);
+            collectionStation.Insert(s10);
+
             collectionTransport.Insert(t);
             if (Company != null)
             {
@@ -139,8 +156,17 @@ namespace MongoLayer.ManipulationModels
             }
            
             rid1.CurrentStation = new MongoDBRef("Station", s1.Id);
-            rid2.CurrentStation = new MongoDBRef("Station", s2.Id);
-           
+            rid1.CurrentStation = new MongoDBRef("Station", s2.Id);
+            rid1.CurrentStation = new MongoDBRef("Station", s3.Id);
+            rid1.CurrentStation = new MongoDBRef("Station", s4.Id);
+            rid1.CurrentStation = new MongoDBRef("Station", s5.Id);
+
+            rid2.CurrentStation = new MongoDBRef("Station", s6.Id);
+            rid2.CurrentStation = new MongoDBRef("Station", s7.Id);
+            rid2.CurrentStation = new MongoDBRef("Station", s8.Id);
+            rid2.CurrentStation = new MongoDBRef("Station", s9.Id);
+            rid2.CurrentStation = new MongoDBRef("Station", s10.Id);
+
             collectionRide.Insert(rid1);
             collectionRide.Insert(rid2);
 
@@ -149,7 +175,13 @@ namespace MongoLayer.ManipulationModels
             rout2.Rides.Add(new MongoDBRef("Ride", rid1.Id));
             rout2.Stations.Add(new MongoDBRef("Station", s1.Id));
             rout2.Stations.Add(new MongoDBRef("Station", s2.Id));
+            rout2.Stations.Add(new MongoDBRef("Station", s3.Id));
+            rout2.Stations.Add(new MongoDBRef("Station", s4.Id));
+            rout2.Stations.Add(new MongoDBRef("Station", s5.Id));
             rout1.Stations.Add(new MongoDBRef("Station", s2.Id));
+            rout1.Stations.Add(new MongoDBRef("Station", s7.Id));
+            rout1.Stations.Add(new MongoDBRef("Station", s8.Id));
+            rout1.Stations.Add(new MongoDBRef("Station", s9.Id));
             rout1.Transport = new MongoDBRef("Transport", t.Id);
            
             collectionRoute.Insert(rout1);
@@ -263,6 +295,15 @@ namespace MongoLayer.ManipulationModels
 
 
 
+        }
+
+        public static void RemoveAllData()
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+            db.Drop();
         }
 
     }
