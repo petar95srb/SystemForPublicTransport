@@ -81,6 +81,7 @@
             this.editLine.TabIndex = 3;
             this.editLine.Text = "Izmeni liniju";
             this.editLine.UseVisualStyleBackColor = true;
+            this.editLine.Click += new System.EventHandler(this.editLine_Click);
             // 
             // editStation
             // 
@@ -166,6 +167,8 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(690, 380);
             this.dataGridView1.TabIndex = 12;
+            this.dataGridView1.DataMemberChanged += new System.EventHandler(this.dataGridView1_DataMemberChanged);
+            this.dataGridView1.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowLeave);
             // 
             // Admin
             // 

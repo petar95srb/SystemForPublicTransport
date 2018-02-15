@@ -106,6 +106,7 @@
             this.btnDodajStanicu.TabIndex = 8;
             this.btnDodajStanicu.Text = "Dodaj stanicu";
             this.btnDodajStanicu.UseVisualStyleBackColor = true;
+            this.btnDodajStanicu.Click += new System.EventHandler(this.btnDodajStanicu_Click);
             // 
             // btnObrisiStanicu
             // 

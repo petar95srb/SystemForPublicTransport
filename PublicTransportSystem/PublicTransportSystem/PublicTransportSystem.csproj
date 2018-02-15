@@ -73,6 +73,12 @@
     <Compile Include="Admin2.Designer.cs">
       <DependentUpon>Admin2.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChoseStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChoseStation.Designer.cs">
+      <DependentUpon>ChoseStation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin2.resx">
       <DependentUpon>Admin2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChoseStation.resx">
+      <DependentUpon>ChoseStation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>

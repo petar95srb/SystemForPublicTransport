@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoLayer.ModelViews;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,17 @@ namespace PublicTransportSystem
 {
     public partial class Linija : Form
     {
-        public Linija()
+        RoutView route;
+        public Linija(RoutView route)
         {
             InitializeComponent();
+            this.route = route;
+            listBox1.Items.AddRange(route.Stations.ToArray());
+        }
+
+        private void btnDodajStanicu_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
