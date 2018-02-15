@@ -60,7 +60,11 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ManipulationModels\InitializationDataModel.cs" />
+    <Compile Include="ManipulationModels\RideModel.cs" />
     <Compile Include="ManipulationModels\RouteModel.cs" />
+    <Compile Include="ManipulationModels\StationModel.cs" />
+    <Compile Include="ManipulationModels\TicketModel.cs" />
+    <Compile Include="ManipulationModels\TransportModel.cs" />
     <Compile Include="Models\Alerts.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\Classic.cs" />
@@ -78,6 +82,7 @@
     <Compile Include="Models\Vehical.cs" />
     <Compile Include="ModelViews\RideView.cs" />
     <Compile Include="ModelViews\RoutView.cs" />
+    <Compile Include="ModelViews\TransportView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
