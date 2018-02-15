@@ -15,6 +15,8 @@ namespace MongoLayer.ModelViews
         public List<Vehical> Vehicals { get; set; }
         public List<Route> Routs { get; set; }
 
+        public string Type { get; set; }
+
         public Company Company { get; set; }
 
         public IDictionary<string, object> DynamicFields { get; set; }

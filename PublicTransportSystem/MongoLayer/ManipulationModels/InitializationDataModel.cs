@@ -116,7 +116,7 @@ namespace MongoLayer.ManipulationModels
             var collectionVehical = db.GetCollection<Vehical>("Vehical");
 
             var Company = (from c in collectionCompany.AsQueryable<Company>() select c).FirstOrDefault();
-            Transport t = new Transport() { };
+            Transport t = new Transport() { Type="Bus"};
             Station s1 = new Station() { Address = "bulevar", Lat = 54, Lon = 32, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
             Station s2 = new Station() { Address = "bulevar22", Lat = 14, Lon = 22, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
             Ride rid1 = new Ride() { StartTime = DateTime.Now.AddDays(+1), EndTime = DateTime.Now.AddDays(+2), Late = 0 };
@@ -211,14 +211,14 @@ namespace MongoLayer.ManipulationModels
 
 
 
-            TransportCount tc1 = new TransportCount() { NumOfRides = 23, TransportType = "Bus" };
-            TransportCount tc2 = new TransportCount() { NumOfRides = 2, TransportType = "Metro" };
-            TransportCount tc3 = new TransportCount() { NumOfRides = 19, TransportType = "Brod" };
+            //TransportCount tc1 = new TransportCount() { NumOfRides = 23, TransportType = "Bus" };
+            //TransportCount tc2 = new TransportCount() { NumOfRides = 2, TransportType = "Metro" };
+            //TransportCount tc3 = new TransportCount() { NumOfRides = 19, TransportType = "Brod" };
 
             Classic clasicTicket = new Classic() { Type = "classic" };
-            clasicTicket.DynamicFields.Add(tc1.TransportType,tc1);
-            clasicTicket.DynamicFields.Add(tc2.TransportType,tc2);
-            clasicTicket.DynamicFields.Add(tc3.TransportType,tc3);
+            clasicTicket.DynamicFields.Add("Bus",15);
+            clasicTicket.DynamicFields.Add("Metro",21);
+            clasicTicket.DynamicFields.Add("Brod",2);
             TimeTicket timeTicket = new TimeTicket() { Duration = 20, StartTime = DateTime.Now, EndTime = DateTime.Now.AddMonths(+2), Type = "time", Zone = 32 };
 
             collectionTicket.Insert(clasicTicket);

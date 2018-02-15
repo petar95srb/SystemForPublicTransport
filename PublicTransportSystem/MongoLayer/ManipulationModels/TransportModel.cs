@@ -26,6 +26,7 @@ namespace MongoLayer.ManipulationModels
             var transp =collectionTransport.AsQueryable<Transport>().Select(t => new TransportView()
             {
                 Id=t.Id,
+                Type=t.Type,
                 Company = t.Company != null ? db.FetchDBRefAs<Company>(t.Company) : null,
                 DynamicFields=t.DynamicFields,
                 Routs=collectionRoute.AsQueryable<Route>().ToList().Where(p=>t.Routs.Contains(new MongoDBRef("Routs",p.Id))).ToList(),

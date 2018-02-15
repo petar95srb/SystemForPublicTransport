@@ -54,8 +54,8 @@ namespace MongoLayer.ManipulationModels
             if (Ticket.GetType() == typeof(Classic)){
                 if (((Classic)Ticket).DynamicFields.ContainsKey(Transport.Type))
                 {
-                    if (((TransportCount)((Classic)Ticket).DynamicFields[Transport.Type]).NumOfRides > 0){
-                        ((TransportCount)((Classic)Ticket).DynamicFields[Transport.Type]).NumOfRides = ((TransportCount)((Classic)Ticket).DynamicFields[Transport.Type]).NumOfRides - 1;
+                    if ((int)((Classic)Ticket).DynamicFields[Transport.Type] > 0){
+                        ((Classic)Ticket).DynamicFields[Transport.Type]= (int)((Classic)Ticket).DynamicFields[Transport.Type] - 1;
                         collectionTicket.Save(Ticket);
                         return true;
                     }

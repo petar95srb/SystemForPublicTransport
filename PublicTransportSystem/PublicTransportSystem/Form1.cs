@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoLayer.ManipulationModels;
 using MongoLayer.Models;
 using System;
@@ -25,15 +26,15 @@ namespace PublicTransportSystem
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
             var db = server.GetDatabase("TransportSystem");
-            InitializationDataModel.InitCompany();
-            InitializationDataModel.InitTimeTable();
-            InitializationDataModel.JoinCompanyAndTimeTable();
-            InitializationDataModel.InitVehical();
-            InitializationDataModel.InitRoutes();
-            InitializationDataModel.InitAlert();
-            InitializationDataModel.InitTikets();
-            InitializationDataModel.InitTransportCountAndTimeTable();
-            var r = RouteModel.GetAllRoutes();
+            //InitializationDataModel.InitCompany();
+            //InitializationDataModel.InitTimeTable();
+            //InitializationDataModel.JoinCompanyAndTimeTable();
+            //InitializationDataModel.InitVehical();
+            //InitializationDataModel.InitRoutes();
+            //InitializationDataModel.InitAlert();
+           // InitializationDataModel.InitTikets();
+          //  var r = RouteModel.GetAllRoutes();
+          TicketModel.CheckTicket(ObjectId.Parse("5a85ded5de34561b8c293f7d"),ObjectId.Parse("5a85d4f2de3456131458f549"),DateTime.Now);
          
              MessageBox.Show("Succes");
         }
