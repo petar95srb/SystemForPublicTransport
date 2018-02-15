@@ -117,16 +117,23 @@ namespace MongoLayer.ManipulationModels
 
             var Company = (from c in collectionCompany.AsQueryable<Company>() select c).FirstOrDefault();
             Transport t = new Transport() { Type="Brod"};
-            Station s1 = new Station() { Address = "bulevar", Lat = 54, Lon = 32, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
-            Station s2 = new Station() { Address = "bulevar22", Lat = 389, Lon = 349, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
-            Station s3 = new Station() { Address = "bulevarZ", Lat = 289, Lon = 239, Lines = { 33, 42, 61 }, Name = "treca", Zone = 34 };
-            Station s4 = new Station() { Address = "Cair", Lat = 420, Lon = 200, Lines = { 6, 53, 2 }, Name = "cetvrta", Zone = 35 };
-            Station s5 = new Station() { Address = "Sveti sava", Lat = 480, Lon = 423, Lines = { 10, 4, 26 }, Name = "peta", Zone = 36 };
+            Station s1 = new Station() { Address = "bulevar", Lat = 54, Lon = 32, Lines = { 3,22, 6 }, Name = "prva", Zone = 32 };
+            Station s2 = new Station() { Address = "bulevar22", Lat = 389, Lon = 349, Lines = { 83, 43,22 }, Name = "druga", Zone = 33 };
+            Station s3 = new Station() { Address = "bulevarZ", Lat = 289, Lon = 239, Lines = { 22, 42, 61 }, Name = "treca", Zone = 34 };
+            Station s4 = new Station() { Address = "Cair", Lat = 420, Lon = 200, Lines = { 6, 53, 22 }, Name = "cetvrta", Zone = 35 };
+            Station s5 = new Station() { Address = "Sveti sava", Lat = 480, Lon = 423, Lines = { 22, 4, 26 }, Name = "peta", Zone = 36 };
             Station s6 = new Station() { Address = "Medvedeva", Lat = 49, Lon = 30, Lines = { 19, 33, 42 }, Name = "sesta", Zone = 37 };
-            Station s7 = new Station() { Address = "Elfak", Lat = 392, Lon = 93, Lines = { 5, 1, 88 }, Name = "sedma", Zone = 38 };
-            Station s8 = new Station() { Address = "NiskaBanja", Lat =380, Lon = 55, Lines = { 6,21,22 }, Name = "osma", Zone = 39 };
-            Station s9 = new Station() { Address = "Zoran Djindjic", Lat = 92, Lon = 320, Lines = { 16, 43, 1 }, Name = "deveta", Zone = 40 };
+            Station s7 = new Station() { Address = "Elfak", Lat = 392, Lon = 93, Lines = { 5, 83, 88 }, Name = "sedma", Zone = 38 };
+            Station s8 = new Station() { Address = "NiskaBanja", Lat =380, Lon = 55, Lines = { 83,21,22 }, Name = "osma", Zone = 39 };
+            Station s9 = new Station() { Address = "Zoran Djindjic", Lat = 92, Lon = 320, Lines = { 16, 43, 83 }, Name = "deveta", Zone = 40 };
             Station s10 = new Station() { Address = "Cegar", Lat = 140, Lon = 220, Lines = { 99,3, 52 }, Name = "deseta", Zone = 41 };
+
+            Station s11 = new Station() { Address = "Cegar", Lat = 14, Lon = 20, Lines = { 12, 55, 52 }, Name = "heheh", Zone = 44 };
+            Station s12 = new Station() { Address = "Cegar", Lat = 240, Lon = 120, Lines = { 88, 31, 62 }, Name = "daaa", Zone = 45 };
+
+            collectionStation.Insert(s11);
+            collectionStation.Insert(s12);
+
             Ride rid1 = new Ride() { StartTime = DateTime.Now.AddDays(+1), EndTime = DateTime.Now.AddDays(+2), Late = 0 };
             Ride rid2 = new Ride() { StartTime = DateTime.Now.AddDays(+3), EndTime = DateTime.Now.AddDays(+4), Late = 5 };
             Route rout1 = new Route() { Price = 120, Duration = 33, Line = 83 };

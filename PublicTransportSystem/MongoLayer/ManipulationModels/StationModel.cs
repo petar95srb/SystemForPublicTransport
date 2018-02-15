@@ -42,5 +42,22 @@ namespace MongoLayer.ManipulationModels
 
             return Station;
         }
+
+        public static List<Station> NotInRouteStations(ObjectId RoutId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionRoute = db.GetCollection<Route>("Route");
+            var collectionStation = db.GetCollection<Station>("Station");
+
+            var Rout = (from r in collectionRoute.AsQueryable<Route>() where r.Id == RoutId select r).FirstOrDefault();
+
+            int line = Rout != null ? Rout.Line : 0;
+
+            return (from s in collectionStation.AsQueryable<Station>() where !s.Lines.Contains(line) select s).ToList();
+        }
     }
 }
