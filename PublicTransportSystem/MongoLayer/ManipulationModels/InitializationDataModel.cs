@@ -116,7 +116,7 @@ namespace MongoLayer.ManipulationModels
             var collectionVehical = db.GetCollection<Vehical>("Vehical");
 
             var Company = (from c in collectionCompany.AsQueryable<Company>() select c).FirstOrDefault();
-            Transport t = new Transport() { Type="Bus"};
+            Transport t = new Transport() { Type="Brod"};
             Station s1 = new Station() { Address = "bulevar", Lat = 54, Lon = 32, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
             Station s2 = new Station() { Address = "bulevar22", Lat = 14, Lon = 22, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
             Ride rid1 = new Ride() { StartTime = DateTime.Now.AddDays(+1), EndTime = DateTime.Now.AddDays(+2), Late = 0 };

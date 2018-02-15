@@ -56,6 +56,10 @@ namespace MongoLayer.ManipulationModels
                 {
                     if ((int)((Classic)Ticket).DynamicFields[Transport.Type] > 0){
                         ((Classic)Ticket).DynamicFields[Transport.Type]= (int)((Classic)Ticket).DynamicFields[Transport.Type] - 1;
+                        if ((int)((Classic)Ticket).DynamicFields[Transport.Type] == 0)
+                        {
+                            ((Classic)Ticket).DynamicFields.Remove(Transport.Type);
+                        }
                         collectionTicket.Save(Ticket);
                         return true;
                     }
@@ -66,6 +70,62 @@ namespace MongoLayer.ManipulationModels
                 }
             }
             return false;
+        }
+
+        public static void BuyClassicTicket(ObjectId TicketId, string Type, int numOfTicket)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionTicket = db.GetCollection<Ticket>("Ticket");
+          
+
+            var Ticket = (from t in collectionTicket.AsQueryable<Ticket>() where t.Id == TicketId select t).FirstOrDefault();
+            if (Ticket == null)
+            {
+                return;
+            }
+          
+         
+            if (Ticket.GetType() == typeof(Classic))
+            {
+                if (((Classic)Ticket).DynamicFields.ContainsKey(Type))
+                {
+                    ((Classic)Ticket).DynamicFields[Type] = (int)((Classic)Ticket).DynamicFields[Type] + numOfTicket;
+
+                }
+                else
+                {
+                    ((Classic)Ticket).DynamicFields.Add(Type, numOfTicket);
+                }
+                collectionTicket.Save(Ticket);
+            }
+        }
+
+       public static void BuyNewClassicTicket(Classic ticket)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionTicket = db.GetCollection<Ticket>("Ticket");
+            collectionTicket.Insert(ticket);
+        }
+
+        public static void BuyNewTimeTicket(TimeTicket ticket)
+        {
+            
+                var connectionString = "mongodb://localhost/?safe=true";
+                var server = MongoServer.Create(connectionString);
+                var db = server.GetDatabase("TransportSystem");
+
+
+                var collectionTicket = db.GetCollection<Ticket>("Ticket");
+                collectionTicket.Insert(ticket);
+            
         }
     }
 }
