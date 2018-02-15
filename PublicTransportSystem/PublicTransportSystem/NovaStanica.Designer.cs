@@ -48,6 +48,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Dodaj";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label1
             // 
@@ -74,6 +75,7 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Zatvori";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label2
             // 
@@ -143,6 +145,7 @@
             this.Controls.Add(this.btnAdd);
             this.Name = "NovaStanica";
             this.Text = "NovaStanica";
+            this.Load += new System.EventHandler(this.NovaStanica_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,5 @@
-﻿using MongoLayer.ModelViews;
+﻿using MongoLayer.ManipulationModels;
+using MongoLayer.ModelViews;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,22 @@ namespace PublicTransportSystem
 
         private void btnDodajStanicu_Click(object sender, EventArgs e)
         {
+            int poz;
+            if (int.TryParse(txtDodajStanicu.Text, out poz))
+            {
+                if (poz < 0 || poz > route.Stations.Count)
+                    return;
+            }
+            else
+                return;
+            ChoseStation ss = new ChoseStation(route);
+            ss.ShowDialog();
+            if(ss.station!=null)
+            {
+                route= RouteModel.Rout(route.Id, ss.station.Id, poz);
+                listBox1.Items.Clear();
+                listBox1.Items.AddRange(route.Stations.ToArray());
+            }
 
         }
     }
