@@ -20,11 +20,13 @@ namespace PublicTransportSystem
         public ChoseStation(RoutView st)
         {
             InitializeComponent();
+            route = st;
         }
 
         private void ChoseStation_Load(object sender, EventArgs e)
         {
-
+            var sta = StationModel.NotInRouteStations(route.Id);
+            listBox1.Items.AddRange(sta.ToArray());
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,6 +50,11 @@ namespace PublicTransportSystem
         {
             station = null;
             this.Close();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            station = listBox1.SelectedItem as Station;
         }
     }
 }
