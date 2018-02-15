@@ -78,7 +78,7 @@ namespace MongoLayer.ManipulationModels
             var collectionStation = db.GetCollection<Station>("Station");
             var collectionRide = db.GetCollection<Ride>("Ride");
 
-            var Rout = (from r in collectionRoute.AsQueryable<Route>() where r.Id == StationId select r).FirstOrDefault();
+            var Rout = (from r in collectionRoute.AsQueryable<Route>() where r.Id == routId select r).FirstOrDefault();
             if (Rout == null)
             {
                 return null;
