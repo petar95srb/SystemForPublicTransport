@@ -41,6 +41,7 @@ namespace PublicTransportSystem
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
             var db = server.GetDatabase("TransportSystem");
+            InitializationDataModel.RemoveAllData();
             InitializationDataModel.InitCompany();
             InitializationDataModel.InitTimeTable();
             InitializationDataModel.JoinCompanyAndTimeTable();
@@ -78,7 +79,7 @@ namespace PublicTransportSystem
                 Color b;
                 byte[] color = new byte[3];
                 rand.NextBytes(color);
-                b= Color.FromArgb(color[0], color[1], color[2]);
+                b= Color.FromArgb(150,color[0], color[1], color[2]);
 
                 mapa.drawLines(routs[i], b);
 
