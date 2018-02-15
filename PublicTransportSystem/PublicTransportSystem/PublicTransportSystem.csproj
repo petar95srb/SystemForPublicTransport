@@ -80,6 +80,7 @@
     <Compile Include="Linija.Designer.cs">
       <DependentUpon>Linija.cs</DependentUpon>
     </Compile>
+    <Compile Include="Map.cs" />
     <Compile Include="NovaLinija.cs">
       <SubType>Form</SubType>
     </Compile>
