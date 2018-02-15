@@ -83,12 +83,26 @@ namespace MongoLayer.ManipulationModels
             {
                 return null;
             }
-            List<MongoDBRef> temp = Rout.Stations;
-            Rout.Stations = null;
-            collectionRoute.Save(Rout);
+            List<MongoDBRef> temp = new List<MongoDBRef>();
+            int i = 0;
+            foreach(var r in Rout.Stations)
+            {
+                if (i == index)
+                {
+                    temp.Add(new MongoDBRef("Station", StationId));
+                }
+                temp.Add(r);
+            }
             Rout.Stations = temp;
-            Rout.Stations.Insert(index, new MongoDBRef("Station", StationId));
             collectionRoute.Save(Rout);
+
+            var station = (from s in collectionStation.AsQueryable<Station>() where s.Id == StationId select s).FirstOrDefault();
+
+            if (station != null)
+            {
+                station.Lines.Add(Rout.Line);
+                collectionStation.Save(station);
+            }
 
             var route = collectionRoute.AsQueryable<Route>().Where(r=>r.Id==routId).Select(s => new RoutView
             {
