@@ -1,5 +1,5 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
+using MongoDB.Bson;
 using MongoLayer.ManipulationModels;
 using MongoLayer.Models;
 using System;
@@ -11,14 +11,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MongoLayer.ModelViews;
 
 namespace PublicTransportSystem
 {
     public partial class Form1 : Form
     {
+        Map mapa;
+        List<RoutView> routs;
+        List<TransportView> transports;
+
         public Form1()
         {
             InitializeComponent();
+            mapa = new PublicTransportSystem.Map(Map.CreateGraphics());
+            transports = TransportModel.GetAllTransports();
+            Transports.Items.AddRange(transports.ToArray());
+           // updateMap();
         }
 
         private void Init_Click(object sender, EventArgs e)
@@ -26,25 +35,72 @@ namespace PublicTransportSystem
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
             var db = server.GetDatabase("TransportSystem");
-            //InitializationDataModel.InitCompany();
-            //InitializationDataModel.InitTimeTable();
-            //InitializationDataModel.JoinCompanyAndTimeTable();
-            //InitializationDataModel.InitVehical();
-          //  InitializationDataModel.InitRoutes();
-            //InitializationDataModel.InitAlert();
-            // InitializationDataModel.InitTikets();
-            //  var r = RouteModel.GetAllRoutes();
-           TicketModel.CheckTicket(ObjectId.Parse("5a85ded5de34561b8c293f7d"),ObjectId.Parse("5a85e2bfde3456237cb44e09"),DateTime.Now);
-           // TicketModel.BuyClassicTicket(ObjectId.Parse("5a85ded5de34561b8c293f7d"), "Avion", 10);
+            InitializationDataModel.InitCompany();
+            InitializationDataModel.InitTimeTable();
+            InitializationDataModel.JoinCompanyAndTimeTable();
+            InitializationDataModel.InitVehical();
+            InitializationDataModel.InitRoutes();
+            InitializationDataModel.InitAlert();
+            InitializationDataModel.InitTikets();
+            InitializationDataModel.InitTransportCountAndTimeTable();
+            var r = RouteModel.GetAllRoutes();
          
              MessageBox.Show("Succes");
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
 
         }
 
+        private void updateMap()
+        {
+            TransportView test= Transports.SelectedItem as TransportView;
+            if(test!=null)
+            {
+                routs = RouteModel.GetAllRoutes(test.Id.ToString());
+            }
+            else
+            {
+                routs = RouteModel.GetAllRoutes();
+            }
+            Random rand = new Random(Environment.TickCount);
+           // mapa.clearMap();
+            for(int i=0;i<routs.Count;i++)
+            {
+                Color b;
+                byte[] color = new byte[3];
+                rand.NextBytes(color);
+                b= Color.FromArgb(color[0], color[1], color[2]);
 
+                mapa.drawLines(routs[i], b);
+
+               
+            }
+
+
+            //Map.Update();
+
+
+
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            //mapa.clearMap();
+            //updateMap();
+        }
+
+        private void Map_Paint(object sender, PaintEventArgs e)
+        {
+            mapa.clearMap();
+            updateMap();
+        }
+
+        private void Transports_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Map.Invalidate();
+        }
     }
 }

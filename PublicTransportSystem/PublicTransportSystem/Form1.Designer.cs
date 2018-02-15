@@ -117,6 +117,7 @@
             this.Transports.Name = "Transports";
             this.Transports.Size = new System.Drawing.Size(121, 21);
             this.Transports.TabIndex = 0;
+            this.Transports.SelectedIndexChanged += new System.EventHandler(this.Transports_SelectedIndexChanged);
             // 
             // Map
             // 
@@ -124,6 +125,7 @@
             this.Map.Name = "Map";
             this.Map.Size = new System.Drawing.Size(494, 438);
             this.Map.TabIndex = 1;
+            this.Map.Paint += new System.Windows.Forms.PaintEventHandler(this.Map_Paint);
             // 
             // Info
             // 
@@ -143,6 +145,7 @@
             this.Name = "Form1";
             this.Text = "Transport system";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
