@@ -116,7 +116,7 @@ namespace MongoLayer.ManipulationModels
             var collectionVehical = db.GetCollection<Vehical>("Vehical");
 
             var Company = (from c in collectionCompany.AsQueryable<Company>() select c).FirstOrDefault();
-            Transport t = new Transport() { };
+            Transport t = new Transport() { Type="Bus"};
             Station s1 = new Station() { Address = "bulevar", Lat = 54, Lon = 32, Lines = { 3, 4, 6 }, Name = "prva", Zone = 32 };
             Station s2 = new Station() { Address = "bulevar22", Lat = 14, Lon = 22, Lines = { 9, 43, 62 }, Name = "druga", Zone = 33 };
             Ride rid1 = new Ride() { StartTime = DateTime.Now.AddDays(+1), EndTime = DateTime.Now.AddDays(+2), Late = 0 };
@@ -209,34 +209,31 @@ namespace MongoLayer.ManipulationModels
 
             var collectionTicket = db.GetCollection<Ticket>("Ticket");
 
+
+
+            //TransportCount tc1 = new TransportCount() { NumOfRides = 23, TransportType = "Bus" };
+            //TransportCount tc2 = new TransportCount() { NumOfRides = 2, TransportType = "Metro" };
+            //TransportCount tc3 = new TransportCount() { NumOfRides = 19, TransportType = "Brod" };
+
             Classic clasicTicket = new Classic() { Type = "classic" };
-            clasicTicket.DynamicFields.Add("Bus", 2);
-            clasicTicket.DynamicFields.Add("Metro", 4);
-            clasicTicket.DynamicFields.Add("Brod", 1);
+            clasicTicket.DynamicFields.Add("Bus",15);
+            clasicTicket.DynamicFields.Add("Metro",21);
+            clasicTicket.DynamicFields.Add("Brod",2);
             TimeTicket timeTicket = new TimeTicket() { Duration = 20, StartTime = DateTime.Now, EndTime = DateTime.Now.AddMonths(+2), Type = "time", Zone = 32 };
 
             collectionTicket.Insert(clasicTicket);
             collectionTicket.Insert(timeTicket);
         }
 
-        public static void InitTransportCountAndTimeTable()
+        public static void InitTimeTable1()
         {
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
             var db = server.GetDatabase("TransportSystem");
 
-            var collectionTransportCount = db.GetCollection<TransportCount>("TransportCount");
             var collectionTimeTable = db.GetCollection<TimeTable>("TimeTable");
             var collectionRide = db.GetCollection<Ride>("Ride");
             var collectionC = db.GetCollection<Company>("Company");
-
-            TransportCount tc1 = new TransportCount() { NumOfRides = 23, TransportType = "Bus" };
-            TransportCount tc2 = new TransportCount() { NumOfRides = 2, TransportType = "Metro" };
-            TransportCount tc3 = new TransportCount() { NumOfRides = 19, TransportType = "Brod" };
-
-            collectionTransportCount.Insert(tc1);
-            collectionTransportCount.Insert(tc2);
-            collectionTransportCount.Insert(tc3);
 
          
             TimeTable tt = new TimeTable();

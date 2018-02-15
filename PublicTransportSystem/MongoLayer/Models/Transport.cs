@@ -18,6 +18,8 @@ namespace MongoLayer.Models
 
         public MongoDBRef Company { get; set; }
 
+        public string Type { get; set; }
+
         [BsonExtraElements]
         public IDictionary<string, object> DynamicFields { get; set; }
 
