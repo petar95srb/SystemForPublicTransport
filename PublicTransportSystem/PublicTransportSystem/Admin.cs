@@ -51,15 +51,15 @@ namespace PublicTransportSystem
         }
         private void setStations()
         {
-            //List<Station> routs;
-            //routs = StationModel.
-            //dataGridView1.DataSource = routs;
+            List<Station> routs;
+            routs = StationModel.GetAllStations();
+            dataGridView1.DataSource = routs;
         }
         private void setvozila()
         {
-            //List<Station> routs;
-            //routs = StationModel.
-            //dataGridView1.DataSource = routs;
+            List<Vehical> routs;
+            routs = VehicalModel.GetAllVehical();
+            dataGridView1.DataSource = routs;
         }
 
         private void listLines_Click(object sender, EventArgs e)
@@ -74,7 +74,24 @@ namespace PublicTransportSystem
 
         private void listVehicle_Click(object sender, EventArgs e)
         {
+            setvozila();
+        }
 
+        private void dataGridView1_DataMemberChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dataGridView1_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void editLine_Click(object sender, EventArgs e)
+        {
+            Linija st = new Linija(dataGridView1.SelectedRows[0].DataBoundItem as RoutView);
+            st.Show();
+            
         }
     }
 }

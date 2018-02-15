@@ -30,6 +30,9 @@ namespace MongoLayer.Models
             DynamicFields = new Dictionary<string, object>();
             Alerts = new List<MongoDBRef>();
         }
-
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

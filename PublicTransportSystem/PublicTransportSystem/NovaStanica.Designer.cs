@@ -34,10 +34,10 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAdress = new System.Windows.Forms.TextBox();
-            this.txtLine = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnAddLine = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -91,31 +91,6 @@
             this.txtAdress.Size = new System.Drawing.Size(128, 20);
             this.txtAdress.TabIndex = 5;
             // 
-            // txtLine
-            // 
-            this.txtLine.Location = new System.Drawing.Point(193, 164);
-            this.txtLine.Name = "txtLine";
-            this.txtLine.Size = new System.Drawing.Size(128, 20);
-            this.txtLine.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(87, 167);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Dodaj linije:";
-            // 
-            // btnAddLine
-            // 
-            this.btnAddLine.Location = new System.Drawing.Point(193, 200);
-            this.btnAddLine.Name = "btnAddLine";
-            this.btnAddLine.Size = new System.Drawing.Size(128, 22);
-            this.btnAddLine.TabIndex = 8;
-            this.btnAddLine.Text = "Dodaj liniju";
-            this.btnAddLine.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -127,15 +102,39 @@
             this.label4.Text = "DODAJ NOVU STANICU";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(193, 144);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(35, 20);
+            this.textBox1.TabIndex = 10;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(234, 144);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(35, 20);
+            this.textBox2.TabIndex = 11;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(87, 147);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Kordinate stanice:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // NovaStanica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 394);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnAddLine);
-            this.Controls.Add(this.txtLine);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtAdress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnClose);
@@ -157,9 +156,9 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtAdress;
-        private System.Windows.Forms.TextBox txtLine;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnAddLine;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label3;
     }
 }

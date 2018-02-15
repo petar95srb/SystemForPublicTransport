@@ -81,12 +81,12 @@ namespace MongoLayer.ManipulationModels
 
             var collectionV = db.GetCollection<TimeTable>("Vehical");
 
-            Bus v = new Bus() { CurrentCond = "active", LastCheck = DateTime.Now, NumOfPassengers = 58 };
+            Bus v = new Bus() { CurrentCond = "active", LastCheck = DateTime.Now, NumOfPassengers = 58, Type = "Bus" };
             collectionV.Insert(v);
-            Locomotiva v1 = new Locomotiva() { CurrentCond = "active", LastCheck = DateTime.UtcNow, MaximumPulingCapacity = 290.65 };
+            Locomotiva v1 = new Locomotiva() { CurrentCond = "active", LastCheck = DateTime.UtcNow, MaximumPulingCapacity = 290.65, Type = "Voz" };
         
-            Vagon v2 = new Vagon() { CurrentCond = "active", LastCheck = DateTime.Now, NumOfPassengers = 30 };
-            Vagon v3 = new Vagon() { CurrentCond = "error", LastCheck = DateTime.Now, NumOfPassengers = 40 };
+            Vagon v2 = new Vagon() { CurrentCond = "active", LastCheck = DateTime.Now, NumOfPassengers = 30,Type="Voz" };
+            Vagon v3 = new Vagon() { CurrentCond = "error", LastCheck = DateTime.Now, NumOfPassengers = 40, Type = "Voz" };
             collectionV.Insert(v2);
             collectionV.Insert(v3);
             v1.Vagons.Add(new MongoDBRef("Vehical", v2.Id));
