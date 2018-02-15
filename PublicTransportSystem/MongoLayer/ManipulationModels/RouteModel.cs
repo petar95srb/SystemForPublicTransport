@@ -83,10 +83,14 @@ namespace MongoLayer.ManipulationModels
             {
                 return null;
             }
+            List<MongoDBRef> temp = Rout.Stations;
+            Rout.Stations = null;
+            collectionRoute.Save(Rout);
+            Rout.Stations = temp;
             Rout.Stations.Insert(index, new MongoDBRef("Station", StationId));
             collectionRoute.Save(Rout);
 
-             var route = collectionRoute.AsQueryable<Route>().Where(r=>r.Id==routId).Select(s => new RoutView
+            var route = collectionRoute.AsQueryable<Route>().Where(r=>r.Id==routId).Select(s => new RoutView
             {
                 Duration = s.Duration,
                 Id = s.Id,
