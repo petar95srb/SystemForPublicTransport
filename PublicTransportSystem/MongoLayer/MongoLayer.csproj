@@ -65,6 +65,7 @@
     <Compile Include="ManipulationModels\StationModel.cs" />
     <Compile Include="ManipulationModels\TicketModel.cs" />
     <Compile Include="ManipulationModels\TransportModel.cs" />
+    <Compile Include="ManipulationModels\VehicalModel.cs" />
     <Compile Include="Models\Alerts.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\Classic.cs" />
