@@ -25,11 +25,17 @@ namespace PublicTransportSystem
         {
             InitializeComponent();
             mapa = new PublicTransportSystem.Map(Map.CreateGraphics());
-            transports = TransportModel.GetAllTransports();
-            Transports.Items.AddRange(transports.ToArray());
+            updateComboBox();
            // updateMap();
         }
-
+        private void updateComboBox()
+        {
+            transports = TransportModel.GetAllTransports();
+            Transports.Items.Clear();
+            Transports.Items.Add("Transports");
+            Transports.SelectedIndex = 0;
+            Transports.Items.AddRange(transports.ToArray());
+        }
         private void Init_Click(object sender, EventArgs e)
         {
             var connectionString = "mongodb://localhost/?safe=true";
@@ -42,10 +48,10 @@ namespace PublicTransportSystem
             InitializationDataModel.InitRoutes();
             InitializationDataModel.InitAlert();
             InitializationDataModel.InitTikets();
-            InitializationDataModel.InitTransportCountAndTimeTable();
+            InitializationDataModel.InitTimeTable1();
             var r = RouteModel.GetAllRoutes();
-         
-             MessageBox.Show("Succes");
+            updateComboBox();
+            MessageBox.Show("Succes");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -101,6 +107,36 @@ namespace PublicTransportSystem
         private void Transports_SelectedIndexChanged(object sender, EventArgs e)
         {
             Map.Invalidate();
+        }
+
+        private void Map_MouseClick(object sender, MouseEventArgs e)
+        {
+            for(int i=0;i<routs.Count;i++)
+            {
+                for(int j=0;j<routs[i].Stations.Count;j++)
+                {
+                    Rectangle cs = new Rectangle((int)routs[i].Stations[j].Lat - 10,(int) routs[i].Stations[j].Lon - 10, 20, 20);
+                    if(cs.Contains(e.Location))
+                    {
+                        ShowStation(routs[i].Stations[j]);
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void ShowStation(Station st)
+        {
+            label1.Text = st.Address;
+            label2.Text = st.Name;
+            string lines = "";
+            for (int j = 0; j < st.Lines.Count; j++)
+            {
+                lines += st.Lines[j].ToString();
+                if (j <st.Lines.Count - 1)
+                    lines += ",";
+            }
+            label3.Text = lines;
         }
     }
 }
