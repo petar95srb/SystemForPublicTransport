@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MongoLayer.ManipulationModels;
+using MongoLayer.Models;
+using MongoLayer.ModelViews;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +15,14 @@ namespace PublicTransportSystem
 {
     public partial class Admin : Form
     {
+       
+
+
+
         public Admin()
         {
             InitializeComponent();
+           
         }
 
         private void Admin_Load(object sender, EventArgs e)
@@ -33,6 +41,40 @@ namespace PublicTransportSystem
             NovaStanica ns = new NovaStanica();
             ns.ShowDialog();
          
+        }
+
+        private void setRouts()
+        {
+            List<RoutView> routs;
+            routs = RouteModel.GetAllRoutes();
+            dataGridView1.DataSource = routs;
+        }
+        private void setStations()
+        {
+            //List<Station> routs;
+            //routs = StationModel.
+            //dataGridView1.DataSource = routs;
+        }
+        private void setvozila()
+        {
+            //List<Station> routs;
+            //routs = StationModel.
+            //dataGridView1.DataSource = routs;
+        }
+
+        private void listLines_Click(object sender, EventArgs e)
+        {
+            setRouts();
+        }
+
+        private void listStations_Click(object sender, EventArgs e)
+        {
+            setStations();
+        }
+
+        private void listVehicle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

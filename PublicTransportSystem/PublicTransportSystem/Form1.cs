@@ -138,5 +138,17 @@ namespace PublicTransportSystem
             }
             label3.Text = lines;
         }
+
+        private void Client_Click(object sender, EventArgs e)
+        {
+            Client st = new PublicTransportSystem.Client();
+            st.Show();
+        }
+
+        private void Adminbtn_Click(object sender, EventArgs e)
+        {
+            Admin ad = new Admin();
+            ad.Show();
+        }
     }
 }

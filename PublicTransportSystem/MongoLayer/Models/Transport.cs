@@ -29,5 +29,9 @@ namespace MongoLayer.Models
             Routs = new List<MongoDBRef>();
             DynamicFields = new Dictionary<string, object>();
         }
+        public override string ToString()
+        {
+            return Type;
+        }
     }
 }

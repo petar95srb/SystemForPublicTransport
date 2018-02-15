@@ -62,6 +62,7 @@
             this.listLines.TabIndex = 1;
             this.listLines.Text = "Lista linija";
             this.listLines.UseVisualStyleBackColor = true;
+            this.listLines.Click += new System.EventHandler(this.listLines_Click);
             // 
             // deleteLine
             // 
@@ -107,6 +108,7 @@
             this.listStations.TabIndex = 5;
             this.listStations.Text = "Lista stanica";
             this.listStations.UseVisualStyleBackColor = true;
+            this.listStations.Click += new System.EventHandler(this.listStations_Click);
             // 
             // newStation
             // 
@@ -144,6 +146,7 @@
             this.listVehicle.TabIndex = 9;
             this.listVehicle.Text = "Lista vozila";
             this.listVehicle.UseVisualStyleBackColor = true;
+            this.listVehicle.Click += new System.EventHandler(this.listVehicle_Click);
             // 
             // newVehicle
             // 
@@ -156,17 +159,19 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(146, 18);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(351, 380);
+            this.dataGridView1.Size = new System.Drawing.Size(690, 380);
             this.dataGridView1.TabIndex = 12;
             // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 463);
+            this.ClientSize = new System.Drawing.Size(848, 463);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.editVehicle);
             this.Controls.Add(this.deleteVehicle);

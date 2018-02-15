@@ -86,6 +86,7 @@
             this.Adminbtn.TabIndex = 4;
             this.Adminbtn.Text = "Admin";
             this.Adminbtn.UseVisualStyleBackColor = true;
+            this.Adminbtn.Click += new System.EventHandler(this.Adminbtn_Click);
             // 
             // Vihecals
             // 
@@ -113,6 +114,7 @@
             this.Client.TabIndex = 1;
             this.Client.Text = "Client";
             this.Client.UseVisualStyleBackColor = true;
+            this.Client.Click += new System.EventHandler(this.Client_Click);
             // 
             // Transports
             // 
