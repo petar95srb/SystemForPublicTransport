@@ -85,12 +85,24 @@ namespace PublicTransportSystem
 
                
             }
+        }
+
+        private void updateMapLines()
+        {
+           
+            Random rand = new Random(Environment.TickCount);
+            // mapa.clearMap();
+            for (int i = 0; i < routs.Count; i++)
+            {
+                Color b;
+                byte[] color = new byte[3];
+                rand.NextBytes(color);
+                b = Color.FromArgb(150, color[0], color[1], color[2]);
+
+                mapa.drawmapLines(routs[i], b);
 
 
-            //Map.Update();
-
-
-
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -139,6 +151,12 @@ namespace PublicTransportSystem
             }
             label3.Text = lines;
         }
+        private void incriseStation(Station st)
+        {
+            mapa.clearMap();
+            updateMap();
+            mapa.incriseStation(st);
+        }
 
         private void Client_Click(object sender, EventArgs e)
         {
@@ -150,6 +168,28 @@ namespace PublicTransportSystem
         {
             Admin ad = new Admin();
             ad.Show();
+        }
+
+        private void Map_MouseHover(object sender, EventArgs e)
+        {
+            //var Location = Map.PointToClient(Cursor.Position);
+            //mapa.clearMap();
+            //for (int i = 0; i < routs.Count; i++)
+            //{
+            //    for (int j = 0; j < routs[i].Stations.Count; j++)
+            //    {
+            //        Rectangle cs = new Rectangle((int)routs[i].Stations[j].Lat - 10, (int)routs[i].Stations[j].Lon - 10, 20, 20);
+            //        if (cs.Contains(Location))
+            //        {
+            //            mapa.incriseStation(routs[i].Stations[j]);
+            //        }
+            //        else
+            //        {
+            //            mapa.Normakl(routs[i].Stations[j]);
+            //        }
+            //    }
+            //}
+            //updateMapLines();
         }
     }
 }
