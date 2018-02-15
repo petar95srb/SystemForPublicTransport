@@ -90,8 +90,14 @@ namespace MongoLayer.ManipulationModels
                 if (i == index)
                 {
                     temp.Add(new MongoDBRef("Station", StationId));
+                    i = int.MinValue;
                 }
                 temp.Add(r);
+                i++;
+            }
+            if (i < 0)
+            {
+                temp.Add(new MongoDBRef("Station", StationId));
             }
             Rout.Stations = temp;
             collectionRoute.Save(Rout);
