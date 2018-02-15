@@ -100,7 +100,7 @@
             // 
             // btnDodajStanicu
             // 
-            this.btnDodajStanicu.Location = new System.Drawing.Point(339, 206);
+            this.btnDodajStanicu.Location = new System.Drawing.Point(339, 221);
             this.btnDodajStanicu.Name = "btnDodajStanicu";
             this.btnDodajStanicu.Size = new System.Drawing.Size(109, 28);
             this.btnDodajStanicu.TabIndex = 8;
@@ -110,7 +110,7 @@
             // 
             // btnObrisiStanicu
             // 
-            this.btnObrisiStanicu.Location = new System.Drawing.Point(339, 250);
+            this.btnObrisiStanicu.Location = new System.Drawing.Point(339, 265);
             this.btnObrisiStanicu.Name = "btnObrisiStanicu";
             this.btnObrisiStanicu.Size = new System.Drawing.Size(109, 28);
             this.btnObrisiStanicu.TabIndex = 9;
