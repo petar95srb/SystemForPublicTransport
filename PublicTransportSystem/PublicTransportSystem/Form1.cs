@@ -30,11 +30,12 @@ namespace PublicTransportSystem
             //InitializationDataModel.InitTimeTable();
             //InitializationDataModel.JoinCompanyAndTimeTable();
             //InitializationDataModel.InitVehical();
-            //InitializationDataModel.InitRoutes();
+          //  InitializationDataModel.InitRoutes();
             //InitializationDataModel.InitAlert();
-           // InitializationDataModel.InitTikets();
-          //  var r = RouteModel.GetAllRoutes();
-          TicketModel.CheckTicket(ObjectId.Parse("5a85ded5de34561b8c293f7d"),ObjectId.Parse("5a85d4f2de3456131458f549"),DateTime.Now);
+            // InitializationDataModel.InitTikets();
+            //  var r = RouteModel.GetAllRoutes();
+           TicketModel.CheckTicket(ObjectId.Parse("5a85ded5de34561b8c293f7d"),ObjectId.Parse("5a85e2bfde3456237cb44e09"),DateTime.Now);
+           // TicketModel.BuyClassicTicket(ObjectId.Parse("5a85ded5de34561b8c293f7d"), "Avion", 10);
          
              MessageBox.Show("Succes");
         }
