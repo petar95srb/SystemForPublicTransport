@@ -64,5 +64,24 @@ namespace MongoLayer.ManipulationModels
             }
 
         }
+
+
+        public static void InsertRout(ObjectId routId,ObjectId StationId,int index)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionRoute = db.GetCollection<Route>("Route");
+
+            var Rout = (from r in collectionRoute.AsQueryable<Route>() where r.Id == StationId select r).FirstOrDefault();
+            if (Rout == null)
+            {
+                return;
+            }
+            Rout.Stations.Insert(index, new MongoDBRef("Station", StationId));
+            collectionRoute.Save(Rout);
+        }
     }
 }
