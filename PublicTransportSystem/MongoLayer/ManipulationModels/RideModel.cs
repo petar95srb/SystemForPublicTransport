@@ -25,8 +25,8 @@ namespace MongoLayer.ManipulationModels
             var collectionRide = db.GetCollection<Ride>("Ride");
             var collectionVehical = db.GetCollection<Vehical>("Vehical");
 
-        
-               MongoDBRef Rout = new MongoDBRef("Route",RoutId);
+
+            MongoDBRef Rout = new MongoDBRef("Route", RoutId);
 
             var Rides = collectionRide.AsQueryable<Ride>().Where(p => p.Rout == Rout).Select(r => new RideView()
             {
@@ -56,9 +56,9 @@ namespace MongoLayer.ManipulationModels
             var collectionVehical = db.GetCollection<Vehical>("Vehical");
 
 
-            MongoDBRef Stat = new MongoDBRef("Station",StationId);
+            MongoDBRef Stat = new MongoDBRef("Station", StationId);
 
-            var Rides = collectionRide.AsQueryable<Ride>().Where(p => p.CurrentStation ==Stat).Select(r => new RideView()
+            var Rides = collectionRide.AsQueryable<Ride>().Where(p => p.CurrentStation == Stat).Select(r => new RideView()
             {
                 Id = r.Id,
                 EndTime = r.EndTime,
@@ -71,6 +71,37 @@ namespace MongoLayer.ManipulationModels
             }).ToList();
 
             return Rides;
+        }
+
+
+        public static void SetCurrentStation(ObjectId RaidId, string StationId=null)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+            var collectionStation = db.GetCollection<Station>("Station");
+            var collectionRide = db.GetCollection<Ride>("Ride");
+
+            var Ride = (from r in collectionRide.AsQueryable<Ride>() where r.Id == RaidId select r).FirstOrDefault();
+            if (Ride == null)
+            {
+                return;
+            }
+            if (StationId == null)
+            {
+                Ride.CurrentStation = null;
+                collectionRide.Save(Ride);
+                return;
+            }
+            ObjectId stat = ObjectId.Parse(StationId);
+            var Station = (from s in collectionStation.AsQueryable<Station>() where s.Id == stat select s).FirstOrDefault();
+            if (Station == null)
+            {
+                return;
+            }
+            Ride.CurrentStation = new MongoDBRef("Station", Station.Id);
+            collectionRide.Save(Ride);
+
         }
     }
 }

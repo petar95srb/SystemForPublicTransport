@@ -209,34 +209,31 @@ namespace MongoLayer.ManipulationModels
 
             var collectionTicket = db.GetCollection<Ticket>("Ticket");
 
+
+
+            TransportCount tc1 = new TransportCount() { NumOfRides = 23, TransportType = "Bus" };
+            TransportCount tc2 = new TransportCount() { NumOfRides = 2, TransportType = "Metro" };
+            TransportCount tc3 = new TransportCount() { NumOfRides = 19, TransportType = "Brod" };
+
             Classic clasicTicket = new Classic() { Type = "classic" };
-            clasicTicket.DynamicFields.Add("Bus", 2);
-            clasicTicket.DynamicFields.Add("Metro", 4);
-            clasicTicket.DynamicFields.Add("Brod", 1);
+            clasicTicket.DynamicFields.Add(tc1.TransportType,tc1);
+            clasicTicket.DynamicFields.Add(tc2.TransportType,tc2);
+            clasicTicket.DynamicFields.Add(tc3.TransportType,tc3);
             TimeTicket timeTicket = new TimeTicket() { Duration = 20, StartTime = DateTime.Now, EndTime = DateTime.Now.AddMonths(+2), Type = "time", Zone = 32 };
 
             collectionTicket.Insert(clasicTicket);
             collectionTicket.Insert(timeTicket);
         }
 
-        public static void InitTransportCountAndTimeTable()
+        public static void InitTimeTable1()
         {
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
             var db = server.GetDatabase("TransportSystem");
 
-            var collectionTransportCount = db.GetCollection<TransportCount>("TransportCount");
             var collectionTimeTable = db.GetCollection<TimeTable>("TimeTable");
             var collectionRide = db.GetCollection<Ride>("Ride");
             var collectionC = db.GetCollection<Company>("Company");
-
-            TransportCount tc1 = new TransportCount() { NumOfRides = 23, TransportType = "Bus" };
-            TransportCount tc2 = new TransportCount() { NumOfRides = 2, TransportType = "Metro" };
-            TransportCount tc3 = new TransportCount() { NumOfRides = 19, TransportType = "Brod" };
-
-            collectionTransportCount.Insert(tc1);
-            collectionTransportCount.Insert(tc2);
-            collectionTransportCount.Insert(tc3);
 
          
             TimeTable tt = new TimeTable();
