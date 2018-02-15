@@ -25,6 +25,18 @@ namespace MongoLayer.ManipulationModels
             return (from s in collectionStation.AsQueryable<Station>() select s).ToList();
 
         }
+
+        public static Station InsertStation(Station s)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+            var collectionStation = db.GetCollection<Station>("Station");
+
+            collectionStation.Insert(s);
+            return s;
+        }
         public static Station GetCurrentStation(ObjectId RideId)
         {
             var connectionString = "mongodb://localhost/?safe=true";
