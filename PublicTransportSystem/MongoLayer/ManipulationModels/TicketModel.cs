@@ -103,5 +103,29 @@ namespace MongoLayer.ManipulationModels
                 collectionTicket.Save(Ticket);
             }
         }
+
+       public static void BuyNewClassicTicket(Classic ticket)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionTicket = db.GetCollection<Ticket>("Ticket");
+            collectionTicket.Insert(ticket);
+        }
+
+        public static void BuyNewTimeTicket(TimeTicket ticket)
+        {
+            
+                var connectionString = "mongodb://localhost/?safe=true";
+                var server = MongoServer.Create(connectionString);
+                var db = server.GetDatabase("TransportSystem");
+
+
+                var collectionTicket = db.GetCollection<Ticket>("Ticket");
+                collectionTicket.Insert(ticket);
+            
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace PublicTransportSystem
             InitializationDataModel.InitRoutes();
             InitializationDataModel.InitAlert();
             InitializationDataModel.InitTikets();
-            InitializationDataModel.InitTransportCountAndTimeTable();
+  
             var r = RouteModel.GetAllRoutes();
          
              MessageBox.Show("Succes");
