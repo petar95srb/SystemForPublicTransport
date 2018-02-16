@@ -225,9 +225,9 @@ namespace MongoLayer.ManipulationModels
             var collectionAlerts = db.GetCollection<Alerts>("Alerts");
             var collectionStation = db.GetCollection<Station>("Station");
 
-            var Stat = (from s in collectionStation.AsQueryable<Station>() where s.Address == "bulevar" select s).FirstOrDefault();
+            var Stat = (from s in collectionStation.AsQueryable<Station>() where s.Lines.Contains(22) select s).FirstOrDefault();
             
-            Alerts al = new Alerts() { Description = "bulevar Station not in function", Level = 10 };
+            Alerts al = new Alerts() { Description = "Station not in function", Level = 10 };
             collectionAlerts.Insert(al);
             if (Stat != null)
             {
