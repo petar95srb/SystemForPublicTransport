@@ -132,6 +132,7 @@
             this.editVehicle.TabIndex = 11;
             this.editVehicle.Text = "Izmeni vozilo";
             this.editVehicle.UseVisualStyleBackColor = true;
+            this.editVehicle.Click += new System.EventHandler(this.editVehicle_Click);
             // 
             // deleteVehicle
             // 

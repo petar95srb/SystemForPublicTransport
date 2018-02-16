@@ -18,10 +18,12 @@ namespace PublicTransportSystem
 
         public RideView ride;
         public Transport ts;
+        public RoutView route;
 
-        public AddNewRide(Transport trs,RideView rt =null)
+        public AddNewRide(Transport trs,RoutView rts,RideView rt =null)
         {
             InitializeComponent();
+            route = rts;
             ts = trs;
             ride = rt;
             if (rt != null)
@@ -31,13 +33,6 @@ namespace PublicTransportSystem
         }
         private void initNewData()
         {
-            List<RoutView> routs;
-            routs = RouteModel.GetAllRoutes();
-
-            comboBox1.Items.Add("Routs");
-            comboBox1.Items.AddRange(routs.ToArray());
-            comboBox1.SelectedIndex = 0;
-
             List<MongoLayer.Models.Vehical> vc = VehicalModel.GetAllVehical(ts.Id);
 
             comboBox2.Items.Add("Vihecals");
@@ -54,15 +49,7 @@ namespace PublicTransportSystem
             dateTimePicker1.Value = ride.StartTime;
             dateTimePicker2.Value = ride.EndTime;
 
-            List<RoutView> routs;
-            routs = RouteModel.GetAllRoutes();
             int i;
-            for (i = 0; i < routs.Count; i++)
-                if (routs[i].Id == ride.Rout.Id)
-                    break;
-
-            comboBox1.Items.AddRange(routs.ToArray());
-            comboBox1.SelectedIndex = i;
 
             List<MongoLayer.Models.Vehical> vc = VehicalModel.GetAllVehical(ts.Id);
 
@@ -101,10 +88,9 @@ namespace PublicTransportSystem
 
             ride.EndTime = dateTimePicker2.Value;
 
-            RoutView rts = comboBox1.SelectedItem as RoutView;
-            if (rts == null) return false;
-            ride.Rout = new Route { Id = rts.Id };
-            ride.CurrentStation = new Station { Id = rts.Stations[0].Id };
+            
+            ride.Rout = new Route { Id = route.Id };
+            ride.CurrentStation = new Station { Id = route.Stations[0].Id };
 
             
             MongoLayer.Models.Vehical vts = comboBox2.SelectedItem as MongoLayer.Models.Vehical;
@@ -123,10 +109,6 @@ namespace PublicTransportSystem
             ride.StartTime = dateTimePicker1.Value;
 
             ride.EndTime = dateTimePicker2.Value;
-
-            RoutView rts = comboBox1.SelectedItem as RoutView;
-            if (rts == null) return false;
-            ride.Rout.Id = rts.Id;
 
             MongoLayer.Models.Vehical vts = comboBox2.SelectedItem as MongoLayer.Models.Vehical;
             if (vts == null) return false;

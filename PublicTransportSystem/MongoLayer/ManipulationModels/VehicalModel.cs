@@ -16,7 +16,7 @@ namespace MongoLayer.ManipulationModels
     {
         public static List<Vehical> GetAllVehical()
         {
-
+            
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
             var db = server.GetDatabase("TransportSystem");

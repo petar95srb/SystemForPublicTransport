@@ -24,7 +24,7 @@ namespace PublicTransportSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddNewRide adr = new AddNewRide(rout.Transport);
+            AddNewRide adr = new AddNewRide(rout.Transport,rout);
             adr.ShowDialog();
             updateListBox();
         }
@@ -32,7 +32,7 @@ namespace PublicTransportSystem
         private void button3_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex == -1) return;
-            AddNewRide adr = new AddNewRide(rout.Transport,listBox1.SelectedItem as RideView);
+            AddNewRide adr = new AddNewRide(rout.Transport,rout,listBox1.SelectedItem as RideView);
             adr.ShowDialog();
             updateListBox();
         }

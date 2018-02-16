@@ -100,7 +100,8 @@ namespace PublicTransportSystem
 
             Linija st = new Linija(dataGridView1.SelectedRows[0].DataBoundItem as RoutView);
             st.Show();
-            
+
+            setRouts();
         }
 
         private void deleteLine_Click(object sender, EventArgs e)
@@ -112,6 +113,7 @@ namespace PublicTransportSystem
             RouteModel.DeleteRout(st.Id);
 
             setRouts();
+            
         }
 
         private void deleteStation_Click(object sender, EventArgs e)
@@ -125,12 +127,42 @@ namespace PublicTransportSystem
 
             NovaStanica st = new NovaStanica(dataGridView1.SelectedRows[0].DataBoundItem as Station);
             st.ShowDialog();
+
+            setStations();
         }
 
         private void newVehicle_Click(object sender, EventArgs e)
         {
             Vihecal vs = new Vihecal();
             vs.ShowDialog();
+
+            setvozila();
+        }
+
+        private void editVehicle_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource == null) return;
+
+            var vs = dataGridView1.SelectedRows[0].DataBoundItem as Vehical;
+            VihecalType tp = new VihecalType();
+            if(typeof(Bus)==vs.GetType())
+            {
+                tp.name="Bus";
+            }
+            else if (typeof(Vagon) == vs.GetType())
+            {
+                tp.name = "Vagon";
+            }
+            else if (typeof(Locomotiva) == vs.GetType())
+            {
+                tp.name = "Voz";
+            }
+
+
+            Vihecal fvs = new Vihecal(vs,tp);
+            fvs.ShowDialog();
+
+            setvozila();
         }
     }
 }

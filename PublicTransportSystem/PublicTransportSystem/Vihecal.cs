@@ -18,19 +18,64 @@ namespace PublicTransportSystem
                                  {new VihecalType { name="Vagon",type=typeof(MongoLayer.Models.Vagon)}},
                                 {new VihecalType { name="Voz",type=typeof(MongoLayer.Models.Locomotiva)}}
                                  };
-        public Vihecal()
+
+        Vehical vihecal;
+        VihecalType type;
+
+        public Vihecal(MongoLayer.Models.Vehical vh=null,VihecalType type=null)
         {
             InitializeComponent();
+            comboBox1.Items.Add("ChoseType");
+            comboBox1.SelectedIndex = 0;
+            comboBox1.Items.AddRange(types.ToArray());
             panel1.Visible = false;
             panel2.Visible = false;
             panel3.Visible = false;
+            if(vh!=null)
+            {
+                vihecal = vh;
+                this.type = type;
+                textBox1.Text = vh.CurrentCond;
+                if(type.name.Equals("Bus"))
+                {
+                    panel1.Visible = true;
+                    // panel2.Visible = false;
+                    // panel3.Visible = false;
+                    panel2.Hide();
+                    panel3.Hide();
+                    comboBox1.SelectedIndex = 1;
+                    textBox2.Text = (vh as Bus).NumOfPassengers.ToString();
+                }
+                else if(type.name.Equals("Vagon"))
+                {
+                    panel1.Visible = true;
+                    // panel2.Visible = false;
+                    // panel3.Visible = false;
+                    panel2.Hide();
+                    panel3.Hide();
+                    comboBox1.SelectedIndex = 2;
+                    textBox2.Text = (vh as Vagon).NumOfPassengers.ToString();
+                }
+                else if (type.name.Equals("Voz"))
+                {
+                    // panel1.Visible = false;
+                    // panel2.Visible = false;
+                    panel3.Visible = true;
+                    panel2.Hide();
+                    panel1.Hide();
+                    comboBox1.SelectedIndex = 3;
+                    textBox4.Text = (vh as Locomotiva).MaximumPulingCapacity.ToString();
+                    listBox1.Items.AddRange(VehicalModel.GetAllVagons(vh.Id).ToArray());
+                }
+                comboBox1.Enabled = false;
+            }
+            listBox2.Items.AddRange(VehicalModel.GetAllVagons().ToArray());
+
         }
 
         private void Vihecal_Load(object sender, EventArgs e)
         {
-            comboBox1.Items.Add("ChoseType");
-            comboBox1.SelectedIndex = 0;
-            comboBox1.Items.AddRange(types.ToArray());
+          
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,7 +124,7 @@ namespace PublicTransportSystem
 
         private void panel3_VisibleChanged(object sender, EventArgs e)
         {
-            listBox2.Items.AddRange(VehicalModel.GetAllVagons().ToArray());
+            
         }
 
         private void panel1_VisibleChanged(object sender, EventArgs e)
@@ -89,26 +134,36 @@ namespace PublicTransportSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == -1 || comboBox1.SelectedIndex == 0)
+            if(vihecal!=null)
             {
-                return;
+                if (UpdateVihecal())
+                    this.Close();
+            }
+            else
+            {
+                if (comboBox1.SelectedIndex == -1 || comboBox1.SelectedIndex == 0)
+                {
+                    return;
+                }
+
+                if (comboBox1.SelectedIndex == 1)
+                {
+                    if (AddBus())
+                        this.Close();
+                }
+                if (comboBox1.SelectedIndex == 2)
+                {
+                    if (addVagon())
+                        this.Close();
+                }
+                if (comboBox1.SelectedIndex == 3)
+                {
+                    if (addLocomotiv())
+                        this.Close();
+                }
             }
 
-            if (comboBox1.SelectedIndex == 1)
-            {
-                if (AddBus())
-                    this.Close();
-            }
-            if (comboBox1.SelectedIndex == 2)
-            {
-                if (addVagon())
-                    this.Close();
-            }
-            if (comboBox1.SelectedIndex == 3)
-            {
-                if (addLocomotiv())
-                    this.Close();
-            }
+           
         }
 
         private bool AddBus()
@@ -193,6 +248,43 @@ namespace PublicTransportSystem
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+        private bool UpdateVihecal()
+        {
+            Vehical bs = vihecal;
+            bs.Type = (comboBox1.SelectedItem as VihecalType).name;
+            bs.LastCheck = dateTimePicker1.Value;
+            bs.CurrentCond = textBox1.Text;
+
+            if (type.name.Equals("Bus"))
+            {
+                int psg;
+                if (!int.TryParse(textBox2.Text, out psg)) return false;
+                (bs as Bus).NumOfPassengers = psg;
+            }
+            else if (type.name.Equals("Vagon"))
+            {
+                int psg;
+                if (!int.TryParse(textBox2.Text, out psg)) return false;
+                (bs as Vagon).NumOfPassengers = psg;
+            }
+            else if (type.name.Equals("Voz"))
+            {
+                int psg;
+                if (!int.TryParse(textBox4.Text, out psg)) return false;
+                (bs as Locomotiva).MaximumPulingCapacity = psg;
+                VehicalModel.RemoveVagons(vihecal.Id);
+
+                for (int i = 0; i < listBox1.Items.Count; i++)
+                {
+                    VehicalModel.AddVagon(vihecal.Id, (listBox1.Items[i] as Vagon).Id);
+                }
+            }
+
+
+            return true;
         }
     }
 }

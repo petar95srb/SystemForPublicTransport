@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PublicTransportSystem
 {
-    class VihecalType
+    public class VihecalType
     {
         public string name { get; set; }
         public Type type { get; set; }
