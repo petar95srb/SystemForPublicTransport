@@ -189,6 +189,22 @@ namespace MongoLayer.ManipulationModels
             var db = server.GetDatabase("TransportSystem");
 
             var collectionRide = db.GetCollection<Ride>("Ride");
+            var collectionRoute = db.GetCollection<Route>("Route");
+            var collectionVehical = db.GetCollection<Vehical>("Vehical");
+
+            MongoDBRef RideRef = new MongoDBRef("Ride", rideId);
+
+            var query = Query.EQ("Ride", RideRef.ToBsonDocument());
+            var update = MongoDB.Driver.Builders.Update.Set("Ride", null);
+
+            collectionVehical.Update(query, update);
+
+            var Routs=(from r in collectionRoute.AsQueryable<Route>() where r.Rides.Contains(RideRef) select r).ToList();
+            foreach (var r in Routs)
+            {
+                r.Rides.Remove(RideRef);
+                collectionRoute.Save(r);
+            }
 
             collectionRide.Remove(Query.EQ("_id",rideId));
         }

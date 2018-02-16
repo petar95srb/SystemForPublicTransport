@@ -197,7 +197,10 @@ namespace MongoLayer.ManipulationModels
 
             var collectionRoute = db.GetCollection<Route>("Route");
 
+            var collectionRide = db.GetCollection<Ride>("Ride");
+
             var collectionStation = db.GetCollection<Station>("Station");
+            var collectionTransport = db.GetCollection<Transport>("Transport");
 
             var Rout = (from r in collectionRoute.AsQueryable<Route>() where r.Id == routId select r).FirstOrDefault();
             if (Rout == null)
@@ -210,6 +213,20 @@ namespace MongoLayer.ManipulationModels
             {
                 s.Lines.Remove(Rout.Line);
                 collectionStation.Save(s);
+            }
+
+            MongoDBRef routRef = new MongoDBRef("Route", Rout.Id);
+
+            var query = Query.EQ("Rout",routRef.ToBsonDocument());
+            var update = MongoDB.Driver.Builders.Update.Set("Rout",null);
+
+            collectionRide.Update(query, update);
+
+            var Transports = (from t in collectionTransport.AsQueryable<Transport>() where t.Routs.Contains(routRef) select t).ToList();
+            foreach(var t in Transports)
+            {
+                t.Routs.Remove(routRef);
+                collectionTransport.Save(t);
             }
 
             collectionRoute.Remove(Query.EQ("_id", Rout.Id));
