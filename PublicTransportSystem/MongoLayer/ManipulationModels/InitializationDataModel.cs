@@ -202,6 +202,7 @@ namespace MongoLayer.ManipulationModels
             {
                 t.Vehicals.Add(new MongoDBRef("Vehical", v.Id));
                 v.Transport = new MongoDBRef("Transport", t.Id);
+                collectionVehical.Save(v);
             }
 
             collectionTransport.Save(t);
