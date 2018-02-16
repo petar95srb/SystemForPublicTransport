@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using MongoLayer.Models;
 using MongoLayer.ModelViews;
@@ -84,6 +85,80 @@ namespace MongoLayer.ManipulationModels
 
                         }).FirstOrDefault();
             
+        }
+
+       public static List<Vagon> GetAllVagons()
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionVehical = db.GetCollection<Vehical>("Vehical");
+
+            MongoDBRef lok = new MongoDBRef("Vehical", "");
+
+            var Vagons = (from v in collectionVehical.AsQueryable<Vagon>() where v.Logomotiva == null || v.Logomotiva == lok select v).ToList();
+            return Vagons;
+        }
+
+        public static Locomotiva AddVagon(ObjectId lokId,ObjectId vagonId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionVehical = db.GetCollection<Vehical>("Vehical");
+
+            var Lokom = (from l in collectionVehical.AsQueryable<Locomotiva>() where l.Id == lokId select l).FirstOrDefault();
+            if (Lokom == null)
+            {
+                return null;
+            }
+            var Vagon = (from v in collectionVehical.AsQueryable<Vagon>() where v.Id == vagonId select v).FirstOrDefault();
+            if (Vagon == null)
+            {
+                return null;
+            }
+            Lokom.Vagons.Add(new MongoDBRef("Vehical", Vagon.Id));
+            Vagon.Logomotiva = new MongoDBRef("Vehical", Lokom.Id);
+            collectionVehical.Save(Lokom);
+            collectionVehical.Save(Vagon);
+            return Lokom;
+        }
+
+        public static void DeleteLokomotive(ObjectId lokId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionVehical = db.GetCollection<Vehical>("Vehical");
+            MongoDBRef LokRef = new MongoDBRef("Vehical", lokId);
+            var Vagons = (from v in collectionVehical.AsQueryable<Vagon>() where v.Logomotiva == LokRef select v).ToList();
+            foreach(var v in Vagons)
+            {
+                v.Logomotiva = null;
+                collectionVehical.Save(v);
+            }
+            collectionVehical.Remove(Query.EQ("_id",lokId));
+
+
+        }
+
+        public static void AddVehical(Vehical v)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionVehical = db.GetCollection<Vehical>("Vehical");
+
+            collectionVehical.Insert(v);
+
         }
     }
 }

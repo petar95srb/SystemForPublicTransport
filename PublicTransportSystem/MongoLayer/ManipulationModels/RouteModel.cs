@@ -217,10 +217,17 @@ namespace MongoLayer.ManipulationModels
 
             MongoDBRef routRef = new MongoDBRef("Route", Rout.Id);
 
-            var query = Query.EQ("Rout",routRef.ToBsonDocument());
-            var update = MongoDB.Driver.Builders.Update.Set("Rout","");
+            //var query = Query.EQ("Rout",routRef.ToBsonDocument());
+            //var update = MongoDB.Driver.Builders.Update.Set("Rout","");
 
-            collectionRide.Update(query, update);
+            //collectionRide.Update(query, update);
+            var Rides = (from r in collectionRide.AsQueryable<Ride>() where r.Rout == routRef select r).ToList();
+            foreach(var r in Rides)
+            {
+                r.Rout = null;
+                collectionRide.Save(r);
+
+            }
 
             var Transports = (from t in collectionTransport.AsQueryable<Transport>() where t.Routs.Contains(routRef) select t).ToList();
             foreach(var t in Transports)

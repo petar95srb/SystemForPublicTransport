@@ -194,10 +194,17 @@ namespace MongoLayer.ManipulationModels
 
             MongoDBRef RideRef = new MongoDBRef("Ride", rideId);
 
-            var query = Query.EQ("Ride", RideRef.ToBsonDocument());
-            var update = MongoDB.Driver.Builders.Update.Set("Ride","");
+            //var query = Query.EQ("Ride", RideRef.ToBsonDocument());
+            //var update = MongoDB.Driver.Builders.Update.Set("Ride","");
 
-            collectionVehical.Update(query, update);
+            //collectionVehical.Update(query, update);
+
+            var Vehical = (from v in collectionVehical.AsQueryable<Vehical>() where v.Ride == RideRef select v).ToList();
+            foreach(var v in Vehical)
+            {
+                v.Ride = null;
+                collectionVehical.Save(v);
+            }
 
             var Routs=(from r in collectionRoute.AsQueryable<Route>() where r.Rides.Contains(RideRef) select r).ToList();
             foreach (var r in Routs)
