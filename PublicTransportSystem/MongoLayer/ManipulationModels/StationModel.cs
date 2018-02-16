@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using MongoLayer.Models;
 using System;
@@ -76,6 +77,40 @@ namespace MongoLayer.ManipulationModels
             int line = Rout != null ? Rout.Line : 0;
 
             return (from s in collectionStation.AsQueryable<Station>() where !s.Lines.Contains(line) select s).ToList();
+        }
+
+        public static void RemoveStation(ObjectId StationId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionRoute = db.GetCollection<Route>("Route");
+            var collectionStation = db.GetCollection<Station>("Station");
+            var collectionRide = db.GetCollection<Ride>("Ride");
+            var collectionAlerts = db.GetCollection<Alerts>("Alerts");
+
+            MongoDBRef Station = new MongoDBRef("Station", StationId);
+            var Routes = (from r in collectionRoute.AsQueryable<Route>() where r.Stations.Contains(Station) select r).ToList();
+            foreach(var r in Routes)
+            {
+                r.Stations.Remove(Station);
+                collectionRoute.Save(r);
+            }
+            var Rides = (from r in collectionRide.AsQueryable<Ride>() where r.CurrentStation == Station select r).ToList();
+            foreach(var r in Rides)
+            {
+                r.CurrentStation = null;
+                collectionRide.Save(r);
+            }
+            var Alerts = (from a in collectionAlerts.AsQueryable<Alerts>() where a.Station == Station select a).ToList();
+            foreach(var a in Alerts)
+            {
+                collectionAlerts.Remove(Query.EQ("_id",a.Id));
+            }
+
+            collectionStation.Remove(Query.EQ("_id",StationId));
         }
     }
 }

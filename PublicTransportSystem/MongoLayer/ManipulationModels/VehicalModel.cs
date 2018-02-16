@@ -199,5 +199,44 @@ namespace MongoLayer.ManipulationModels
             return v.Id;
 
         }
+
+        public static void RemoveVehical(ObjectId VehicalId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+            var collectionVehical = db.GetCollection<Vehical>("Vehical");
+            var collectionTransport = db.GetCollection<Transport>("Transport");
+            var Vehical = (from v in collectionVehical.AsQueryable<Vehical>() where v.Id == VehicalId select v).FirstOrDefault();
+            if (Vehical == null)
+            {
+                return;
+            }
+            var collectionRide = db.GetCollection<Ride>("Ride");
+
+            MongoDBRef vehical = new MongoDBRef("Vehical", Vehical.Id);
+            var Ride = (from r in collectionRide.AsQueryable<Ride>() where r.Vehical == vehical select r).FirstOrDefault();
+            if (Ride != null)
+            {
+                RideModel.RemoveRide(Ride.Id);
+            }
+            var Transports = (from t in collectionTransport.AsQueryable<Transport>() where t.Vehicals.Contains(vehical) select t).ToList();
+            foreach(var t in Transports)
+            {
+                t.Vehicals.Remove(vehical);
+                collectionTransport.Save(t);
+            }
+            if (Vehical.GetType() == typeof(Locomotiva))
+            {
+                DeleteLokomotive(Vehical.Id);
+            }
+            else
+            {
+                collectionVehical.Remove(Query.EQ("_id",Vehical.Id));
+            }
+            
+         
+        }
     }
 }
