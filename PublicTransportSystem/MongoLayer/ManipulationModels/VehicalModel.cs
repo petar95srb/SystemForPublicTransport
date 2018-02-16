@@ -148,7 +148,7 @@ namespace MongoLayer.ManipulationModels
 
         }
 
-        public static void AddVehical(Vehical v)
+        public static ObjectId AddVehical(Vehical v)
         {
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
@@ -158,6 +158,8 @@ namespace MongoLayer.ManipulationModels
             var collectionVehical = db.GetCollection<Vehical>("Vehical");
 
             collectionVehical.Insert(v);
+
+            return v.Id;
 
         }
     }
