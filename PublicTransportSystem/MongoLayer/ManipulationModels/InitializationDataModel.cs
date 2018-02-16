@@ -198,10 +198,17 @@ namespace MongoLayer.ManipulationModels
             t.Routs.Add(new MongoDBRef("Route", rout2.Id));
 
             var Vehical = (from v in collectionVehical.AsQueryable() select v);
+            bool one = true;
             foreach(var v in Vehical)
             {
                 t.Vehicals.Add(new MongoDBRef("Vehical", v.Id));
                 v.Transport = new MongoDBRef("Transport", t.Id);
+                v.Ride = new MongoDBRef("Ride", rid1.Id);
+                if (one == true)
+                {
+                    rid1.Vehical = new MongoDBRef("Vehical", v.Id);
+                    one = false;
+                }
                 collectionVehical.Save(v);
             }
 
