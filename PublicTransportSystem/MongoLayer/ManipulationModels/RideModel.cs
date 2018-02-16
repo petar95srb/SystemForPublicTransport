@@ -184,8 +184,6 @@ namespace MongoLayer.ManipulationModels
 
         public static void RemoveRide(ObjectId rideId)
         {
-            ObjectId iD = new ObjectId();
-            
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
             var db = server.GetDatabase("TransportSystem");
@@ -197,7 +195,7 @@ namespace MongoLayer.ManipulationModels
             MongoDBRef RideRef = new MongoDBRef("Ride", rideId);
 
             var query = Query.EQ("Ride", RideRef.ToBsonDocument());
-            var update = MongoDB.Driver.Builders.Update.Set("Ride", iD);
+            var update = MongoDB.Driver.Builders.Update.Set("Ride","");
 
             collectionVehical.Update(query, update);
 
