@@ -34,13 +34,20 @@ namespace PublicTransportSystem
         {
             NovaLinija nl = new NovaLinija();
             nl.ShowDialog();
+            setRouts();
         }
 
         private void newStation_Click(object sender, EventArgs e)
         {
-            NovaStanica ns = new NovaStanica();
-            ns.ShowDialog();
-         
+            NovaStanica ft = new NovaStanica();
+            ft.ShowDialog();
+            if (ft.st != null)
+            {
+                StationModel.InsertStation(ft.st);
+
+                setStations();
+            }
+
         }
 
         private void setRouts()
@@ -89,9 +96,38 @@ namespace PublicTransportSystem
 
         private void editLine_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.DataSource == null) return;
+
             Linija st = new Linija(dataGridView1.SelectedRows[0].DataBoundItem as RoutView);
             st.Show();
             
+        }
+
+        private void deleteLine_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource == null) return;
+
+            RoutView st =dataGridView1.SelectedRows[0].DataBoundItem as RoutView;
+
+            RouteModel.DeleteRout(st.Id);
+        }
+
+        private void deleteStation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editStation_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource == null) return;
+
+            NovaStanica st = new NovaStanica(dataGridView1.SelectedRows[0].DataBoundItem as Station);
+            st.ShowDialog();
+        }
+
+        private void newVehicle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
