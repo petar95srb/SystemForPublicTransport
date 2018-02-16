@@ -95,7 +95,7 @@ namespace MongoLayer.ManipulationModels
                 temp.Add(r);
                 i++;
             }
-            if (i < 0)
+            if (i > 0)
             {
                 temp.Add(new MongoDBRef("Station", StationId));
             }
