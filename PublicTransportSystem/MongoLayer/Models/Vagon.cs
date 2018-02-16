@@ -12,5 +12,10 @@ namespace MongoLayer.Models
         public int NumOfPassengers { get; set; }
         public MongoDBRef Logomotiva { get; set; }
 
+
+        public override string ToString()
+        {
+            return base.CurrentCond;
+        }
     }
 }
