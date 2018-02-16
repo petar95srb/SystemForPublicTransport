@@ -214,5 +214,33 @@ namespace MongoLayer.ManipulationModels
 
             collectionRoute.Remove(Query.EQ("_id", Rout.Id));
         }
+
+        public static RoutView GetRout(ObjectId routId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionRoute = db.GetCollection<Route>("Route");
+
+
+            var collectionStation = db.GetCollection<Station>("Station");
+            var collectionRide = db.GetCollection<Ride>("Ride");
+
+            var route = collectionRoute.AsQueryable<Route>().Where(r => r.Id == routId).Select(s => new RoutView
+            {
+                Duration = s.Duration,
+                Id = s.Id,
+                Line = s.Line,
+                Price = s.Price,
+                DynamicFields = s.DynamicFields,
+                Stations = collectionStation.AsQueryable<Station>().ToList().Where(p => s.Stations.Contains(new MongoDBRef("Station", p.Id))).Select(p => p).ToList(),
+                Transport = s.Transport != null ? db.FetchDBRefAs<Transport>(s.Transport) : null,
+                Rides = collectionRide.AsQueryable<Ride>().ToList().Where(p => s.Rides.Contains(new MongoDBRef("Ride", p.Id))).Select(p => p).ToList(),
+            }).FirstOrDefault();
+
+            return route;
+        }
     }
 }
