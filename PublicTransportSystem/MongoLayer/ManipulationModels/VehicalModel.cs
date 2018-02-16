@@ -148,6 +148,43 @@ namespace MongoLayer.ManipulationModels
 
         }
 
+        public static void RemoveVagons(ObjectId lokId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+            var collectionVehical = db.GetCollection<Vehical>("Vehical");
+            var Lokom = (from l in collectionVehical.AsQueryable<Locomotiva>() where l.Id == lokId select l).FirstOrDefault();
+            if (Lokom == null)
+            {
+                return;
+            }
+            MongoDBRef LokRef = new MongoDBRef("Vehical", lokId);
+            var Vagons = (from v in collectionVehical.AsQueryable<Vagon>() where v.Logomotiva == LokRef select v).ToList();
+            foreach (var v in Vagons)
+            {
+                v.Logomotiva = null;
+                Lokom.Vagons.Remove(new MongoDBRef("Vehical", v.Id));
+                collectionVehical.Save(v);
+            }
+            collectionVehical.Save(Lokom);
+        }
+
+        public static List<Vagon> GetAllVagons(ObjectId lokId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+            var collectionVehical = db.GetCollection<Vehical>("Vehical");
+           
+            MongoDBRef LokRef = new MongoDBRef("Vehical", lokId);
+            var Vagons = (from v in collectionVehical.AsQueryable<Vagon>() where v.Logomotiva == LokRef select v).ToList();
+
+            return Vagons;
+        }
+
         public static ObjectId AddVehical(Vehical v)
         {
             var connectionString = "mongodb://localhost/?safe=true";
