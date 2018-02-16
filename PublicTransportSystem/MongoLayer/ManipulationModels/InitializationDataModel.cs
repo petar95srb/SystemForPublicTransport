@@ -201,6 +201,7 @@ namespace MongoLayer.ManipulationModels
             foreach(var v in Vehical)
             {
                 t.Vehicals.Add(new MongoDBRef("Vehical", v.Id));
+                v.Transport = new MongoDBRef("Transport", t.Id);
             }
 
             collectionTransport.Save(t);
