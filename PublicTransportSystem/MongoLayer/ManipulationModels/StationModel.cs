@@ -55,8 +55,12 @@ namespace MongoLayer.ManipulationModels
             return Station;
         }
 
-        public static List<Station> NotInRouteStations(ObjectId RoutId)
+        public static List<Station> NotInRouteStations(string routId=null)
         {
+            if (routId == null)
+            {
+                return GetAllStations();
+            }
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
             var db = server.GetDatabase("TransportSystem");
@@ -64,6 +68,8 @@ namespace MongoLayer.ManipulationModels
 
             var collectionRoute = db.GetCollection<Route>("Route");
             var collectionStation = db.GetCollection<Station>("Station");
+
+            ObjectId RoutId = ObjectId.Parse(routId);
 
             var Rout = (from r in collectionRoute.AsQueryable<Route>() where r.Id == RoutId select r).FirstOrDefault();
 

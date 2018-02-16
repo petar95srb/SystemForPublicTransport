@@ -82,6 +82,7 @@
     <Compile Include="Models\TransportCount.cs" />
     <Compile Include="Models\Vagon.cs" />
     <Compile Include="Models\Vehical.cs" />
+    <Compile Include="ModelViews\AlertView.cs" />
     <Compile Include="ModelViews\RideView.cs" />
     <Compile Include="ModelViews\RoutView.cs" />
     <Compile Include="ModelViews\TransportView.cs" />
