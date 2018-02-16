@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using MongoLayer.Models;
 using MongoLayer.ModelViews;
@@ -132,6 +133,64 @@ namespace MongoLayer.ManipulationModels
             }).ToList();
 
             return Rides;
+        }
+
+
+        public static void UpdateRide(RideView ride)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+            var collectionRide = db.GetCollection<Ride>("Ride");
+
+            var Ride = (from r in collectionRide.AsQueryable<Ride>() where r.Id == ride.Id select r).FirstOrDefault();
+            if (Ride == null)
+            {
+                return;
+            }
+            Ride.CurrentStation = new MongoDBRef("Station", ride.CurrentStation.Id);
+            Ride.DynamicFields = ride.DynamicFields;
+            Ride.EndTime = ride.EndTime;
+            Ride.Late = ride.Late;
+            Ride.Rout = new MongoDBRef("Route", ride.Rout.Id);
+            Ride.StartTime = ride.StartTime;
+            Ride.Vehical = new MongoDBRef("Vehical", ride.Vehical.Id);
+
+            collectionRide.Save(Ride);
+
+        }
+
+        public static void AddNewRide(RideView ride)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+            var collectionRide = db.GetCollection<Ride>("Ride");
+
+            Ride Ride = new Ride();
+
+            Ride.CurrentStation = new MongoDBRef("Station", ride.CurrentStation.Id);
+            Ride.DynamicFields = ride.DynamicFields;
+            Ride.EndTime = ride.EndTime;
+            Ride.Late = ride.Late;
+            Ride.Rout = new MongoDBRef("Route", ride.Rout.Id);
+            Ride.StartTime = ride.StartTime;
+            Ride.Vehical = new MongoDBRef("Vehical", ride.Vehical.Id);
+
+            collectionRide.Insert(Ride);
+        }
+
+        public static void RemoveRide(ObjectId rideId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+            var collectionRide = db.GetCollection<Ride>("Ride");
+
+            collectionRide.Remove(Query.EQ("_id",rideId));
         }
     }
 }
