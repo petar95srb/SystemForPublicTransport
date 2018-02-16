@@ -110,6 +110,8 @@ namespace PublicTransportSystem
             RoutView st =dataGridView1.SelectedRows[0].DataBoundItem as RoutView;
 
             RouteModel.DeleteRout(st.Id);
+
+            setRouts();
         }
 
         private void deleteStation_Click(object sender, EventArgs e)
@@ -127,7 +129,8 @@ namespace PublicTransportSystem
 
         private void newVehicle_Click(object sender, EventArgs e)
         {
-
+            Vihecal vs = new Vihecal();
+            vs.ShowDialog();
         }
     }
 }

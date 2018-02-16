@@ -28,7 +28,7 @@ namespace MongoLayer.ModelViews
 
         public override string ToString()
         {
-            return Rout.Line.ToString() + " " + CurrentStation.Address + " "+StartTime.ToString("hh:mm:ss")+" " + Vehical.CurrentCond;
+            return Rout.Line.ToString() + " " + CurrentStation.Address + " "+StartTime.ToString("hh:mm:ss")+" " + Vehical;
         }
     }
 }

@@ -154,6 +154,7 @@
     <Compile Include="Vihecal.Designer.cs">
       <DependentUpon>Vihecal.cs</DependentUpon>
     </Compile>
+    <Compile Include="VihecalType.cs" />
     <EmbeddedResource Include="AddNewRide.resx">
       <DependentUpon>AddNewRide.cs</DependentUpon>
     </EmbeddedResource>

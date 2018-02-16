@@ -104,7 +104,7 @@ namespace PublicTransportSystem
             RoutView rts = comboBox1.SelectedItem as RoutView;
             if (rts == null) return false;
             ride.Rout = new Route { Id = rts.Id };
-            ride.CurrentStation.Id = rts.Stations[0].Id;
+            ride.CurrentStation = new Station { Id = rts.Stations[0].Id };
 
             
             MongoLayer.Models.Vehical vts = comboBox2.SelectedItem as MongoLayer.Models.Vehical;

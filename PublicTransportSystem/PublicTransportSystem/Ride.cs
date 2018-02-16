@@ -19,7 +19,7 @@ namespace PublicTransportSystem
         {
             InitializeComponent();
             rout = rt;
-            listBox1.Items.AddRange(rout.Rides.ToArray());
+            listBox1.Items.AddRange(RideModel.GetAllRides(rout.Id).ToArray());
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,8 +47,7 @@ namespace PublicTransportSystem
         private void updateListBox()
         {
             listBox1.Items.Clear();
-            rout=RouteModel.GetRout(rout.Id);
-            listBox1.Items.AddRange(rout.Rides.ToArray());
+            listBox1.Items.AddRange(RideModel.GetAllRides(rout.Id).ToArray());
 
         }
     }
