@@ -1,4 +1,5 @@
 ﻿using MongoLayer.ManipulationModels;
+using MongoLayer.Models;
 using MongoLayer.ModelViews;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,27 @@ namespace PublicTransportSystem
                 listBox1.Items.AddRange(route.Stations.ToArray());
             }
 
+        }
+
+        private void btnObrisiStanicu_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex == -1)
+                return;
+
+            route = RouteModel.RemoveStation(route.Id, ((Station)listBox1.SelectedItem).Id);
+            listBox1.Items.Clear();
+            listBox1.Items.AddRange(route.Stations.ToArray());
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Ride rd = new Ride(route);
+            rd.ShowDialog();
         }
     }
 }

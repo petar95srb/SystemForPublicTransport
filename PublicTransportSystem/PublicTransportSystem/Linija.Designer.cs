@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,25 +36,18 @@
             this.btnDodajStanicu = new System.Windows.Forms.Button();
             this.btnObrisiStanicu = new System.Windows.Forms.Button();
             this.txtDodajStanicu = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(93, 410);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(105, 43);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(231, 410);
+            this.btnEdit.Location = new System.Drawing.Point(150, 410);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(105, 43);
+            this.btnEdit.Size = new System.Drawing.Size(137, 43);
             this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "Close";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // listBox1
             // 
@@ -116,6 +108,7 @@
             this.btnObrisiStanicu.TabIndex = 9;
             this.btnObrisiStanicu.Text = "Obrisi stanicu";
             this.btnObrisiStanicu.UseVisualStyleBackColor = true;
+            this.btnObrisiStanicu.Click += new System.EventHandler(this.btnObrisiStanicu_Click);
             // 
             // txtDodajStanicu
             // 
@@ -124,11 +117,22 @@
             this.txtDodajStanicu.Size = new System.Drawing.Size(109, 20);
             this.txtDodajStanicu.TabIndex = 10;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(339, 314);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 28);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Rides";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Linija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(481, 465);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtDodajStanicu);
             this.Controls.Add(this.btnObrisiStanicu);
             this.Controls.Add(this.btnDodajStanicu);
@@ -137,7 +141,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnSave);
             this.Name = "Linija";
             this.Text = "Linija";
             this.ResumeLayout(false);
@@ -146,8 +149,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label1;
@@ -156,5 +157,6 @@
         private System.Windows.Forms.Button btnDodajStanicu;
         private System.Windows.Forms.Button btnObrisiStanicu;
         private System.Windows.Forms.TextBox txtDodajStanicu;
+        private System.Windows.Forms.Button button1;
     }
 }

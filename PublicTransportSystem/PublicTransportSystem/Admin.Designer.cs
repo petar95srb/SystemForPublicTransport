@@ -72,6 +72,7 @@
             this.deleteLine.TabIndex = 2;
             this.deleteLine.Text = "Obrisi liniju";
             this.deleteLine.UseVisualStyleBackColor = true;
+            this.deleteLine.Click += new System.EventHandler(this.deleteLine_Click);
             // 
             // editLine
             // 
@@ -91,6 +92,7 @@
             this.editStation.TabIndex = 7;
             this.editStation.Text = "Izmeni stanicu";
             this.editStation.UseVisualStyleBackColor = true;
+            this.editStation.Click += new System.EventHandler(this.editStation_Click);
             // 
             // deleteStation
             // 
@@ -100,6 +102,7 @@
             this.deleteStation.TabIndex = 6;
             this.deleteStation.Text = "Obrisi stanicu";
             this.deleteStation.UseVisualStyleBackColor = true;
+            this.deleteStation.Click += new System.EventHandler(this.deleteStation_Click);
             // 
             // listStations
             // 
@@ -157,6 +160,7 @@
             this.newVehicle.TabIndex = 8;
             this.newVehicle.Text = "Dodaj novo vozilo";
             this.newVehicle.UseVisualStyleBackColor = true;
+            this.newVehicle.Click += new System.EventHandler(this.newVehicle_Click);
             // 
             // dataGridView1
             // 

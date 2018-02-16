@@ -32,7 +32,7 @@ namespace MongoLayer.Models
         }
         public override string ToString()
         {
-            return Name;
+            return Address;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace PublicTransportSystem
     {
         RoutView route;
         public Station station=null;
-        public ChoseStation(RoutView st)
+        public ChoseStation(RoutView st=null)
         {
             InitializeComponent();
             route = st;
@@ -25,7 +25,7 @@ namespace PublicTransportSystem
 
         private void ChoseStation_Load(object sender, EventArgs e)
         {
-            var sta = StationModel.NotInRouteStations(route.Id);
+            var sta = StationModel.NotInRouteStations(route!=null?route.Id.ToString():null);
             listBox1.Items.AddRange(sta.ToArray());
         }
 
@@ -37,6 +37,10 @@ namespace PublicTransportSystem
             {
                 station = ft.st;
                 station=StationModel.InsertStation(ft.st);
+
+                var sta = StationModel.NotInRouteStations(route != null ? route.Id.ToString() : null);
+                listBox1.Items.Clear();
+                listBox1.Items.AddRange(sta.ToArray());
             }
         }
 

@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewRide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewRide.Designer.cs">
+      <DependentUpon>AddNewRide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ride.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ride.Designer.cs">
+      <DependentUpon>Ride.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stanica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +154,9 @@
     <Compile Include="Vihecal.Designer.cs">
       <DependentUpon>Vihecal.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddNewRide.resx">
+      <DependentUpon>AddNewRide.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +190,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ride.resx">
+      <DependentUpon>Ride.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stanica.resx">
       <DependentUpon>Stanica.cs</DependentUpon>
     </EmbeddedResource>

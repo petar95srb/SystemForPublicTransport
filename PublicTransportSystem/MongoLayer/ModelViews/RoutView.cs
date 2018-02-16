@@ -21,6 +21,11 @@ namespace MongoLayer.ModelViews
 
         public IDictionary<string, object> DynamicFields { get; set; }
 
+        public static implicit operator RoutView(Route v)
+        {
+            throw new NotImplementedException();
+        }
+
         //public RoutView()
         //{
         //    Stations = new List<Station>();
