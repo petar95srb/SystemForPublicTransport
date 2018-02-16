@@ -118,7 +118,12 @@ namespace PublicTransportSystem
 
         private void deleteStation_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.DataSource == null) return;
 
+            StationModel.RemoveStation((dataGridView1.SelectedRows[0].DataBoundItem as Station).Id);
+
+            setStations();
+            
         }
 
         private void editStation_Click(object sender, EventArgs e)
@@ -161,6 +166,15 @@ namespace PublicTransportSystem
 
             Vihecal fvs = new Vihecal(vs,tp);
             fvs.ShowDialog();
+
+            setvozila();
+        }
+
+        private void deleteVehicle_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource == null) return;
+
+           VehicalModel.RemoveVehical((dataGridView1.SelectedRows[0].DataBoundItem as Vehical).Id);
 
             setvozila();
         }
