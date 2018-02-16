@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using MongoLayer.Models;
 using MongoLayer.ModelViews;
@@ -158,6 +159,60 @@ namespace MongoLayer.ManipulationModels
             }).FirstOrDefault();
 
             return route;
+        }
+
+        public static void AddRoute(RoutView rout)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionRoute = db.GetCollection<Route>("Route");
+
+            Route r = new Route()
+            {
+                Duration = rout.Duration,
+                DynamicFields = rout.DynamicFields,
+                Line = rout.Line,
+                Price = rout.Price
+            };
+            foreach(var stat in rout.Stations)
+            {
+                r.Stations.Add(new MongoDBRef("Station", stat.Id));
+            }
+
+            r.Transport = new MongoDBRef("Transport", rout.Transport.Id);
+
+            collectionRoute.Insert(r);
+
+        }
+
+        public static void DeleteRout(ObjectId routId)
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+            var db = server.GetDatabase("TransportSystem");
+
+
+            var collectionRoute = db.GetCollection<Route>("Route");
+
+            var collectionStation = db.GetCollection<Station>("Station");
+
+            var Rout = (from r in collectionRoute.AsQueryable<Route>() where r.Id == routId select r).FirstOrDefault();
+            if (Rout == null)
+            {
+                return;
+            }
+            var Stations=(from s in collectionStation.AsQueryable<Station>() where s.Lines.Contains(Rout.Line) select s).ToList();
+
+            foreach(var s in Stations)
+            {
+                s.Lines.Remove(Rout.Line);
+                collectionStation.Save(s);
+            }
+
+            collectionRoute.Remove(Query.EQ("_id", Rout.Id));
         }
     }
 }
