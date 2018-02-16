@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ManipulationModels\AlertsModel.cs" />
     <Compile Include="ManipulationModels\InitializationDataModel.cs" />
     <Compile Include="ManipulationModels\RideModel.cs" />
     <Compile Include="ManipulationModels\RouteModel.cs" />

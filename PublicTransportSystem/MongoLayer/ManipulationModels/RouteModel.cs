@@ -125,7 +125,7 @@ namespace MongoLayer.ManipulationModels
             return route;
         }
 
-        public static Route RemoveStation(ObjectId routId,ObjectId StationId)
+        public static RoutView RemoveStation(ObjectId routId,ObjectId StationId)
         {
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
@@ -134,7 +134,10 @@ namespace MongoLayer.ManipulationModels
 
             var collectionRoute = db.GetCollection<Route>("Route");
 
-            var Rout = (from r in collectionRoute.AsQueryable<Route>() where r.Id == StationId select r).FirstOrDefault();
+            var collectionStation = db.GetCollection<Station>("Station");
+            var collectionRide = db.GetCollection<Ride>("Ride");
+
+            var Rout = (from r in collectionRoute.AsQueryable<Route>() where r.Id == routId select r).FirstOrDefault();
             if (Rout == null)
             {
                 return null;
@@ -142,7 +145,19 @@ namespace MongoLayer.ManipulationModels
             Rout.Stations.Remove( new MongoDBRef("Station", StationId));
             collectionRoute.Save(Rout);
 
-            return Rout;
+            var route = collectionRoute.AsQueryable<Route>().Where(r => r.Id == routId).Select(s => new RoutView
+            {
+                Duration = s.Duration,
+                Id = s.Id,
+                Line = s.Line,
+                Price = s.Price,
+                DynamicFields = s.DynamicFields,
+                Stations = collectionStation.AsQueryable<Station>().ToList().Where(p => s.Stations.Contains(new MongoDBRef("Station", p.Id))).Select(p => p).ToList(),
+                Transport = s.Transport != null ? db.FetchDBRefAs<Transport>(s.Transport) : null,
+                Rides = collectionRide.AsQueryable<Ride>().ToList().Where(p => s.Rides.Contains(new MongoDBRef("Ride", p.Id))).Select(p => p).ToList(),
+            }).FirstOrDefault();
+
+            return route;
         }
     }
 }
