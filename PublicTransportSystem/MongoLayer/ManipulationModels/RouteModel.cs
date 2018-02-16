@@ -218,7 +218,7 @@ namespace MongoLayer.ManipulationModels
             MongoDBRef routRef = new MongoDBRef("Route", Rout.Id);
 
             var query = Query.EQ("Rout",routRef.ToBsonDocument());
-            var update = MongoDB.Driver.Builders.Update.Set("Rout",null);
+            var update = MongoDB.Driver.Builders.Update.Set("Rout","");
 
             collectionRide.Update(query, update);
 

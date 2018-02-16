@@ -195,7 +195,7 @@ namespace MongoLayer.ManipulationModels
             MongoDBRef RideRef = new MongoDBRef("Ride", rideId);
 
             var query = Query.EQ("Ride", RideRef.ToBsonDocument());
-            var update = MongoDB.Driver.Builders.Update.Set("Ride", null);
+            var update = MongoDB.Driver.Builders.Update.Set("Ride","");
 
             collectionVehical.Update(query, update);
 

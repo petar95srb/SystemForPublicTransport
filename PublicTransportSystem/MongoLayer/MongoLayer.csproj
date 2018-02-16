@@ -86,6 +86,7 @@
     <Compile Include="ModelViews\RideView.cs" />
     <Compile Include="ModelViews\RoutView.cs" />
     <Compile Include="ModelViews\TransportView.cs" />
+    <Compile Include="ModelViews\VehicalView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
