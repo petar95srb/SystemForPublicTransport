@@ -117,6 +117,8 @@ namespace MongoLayer.ManipulationModels
 
             var Company = (from c in collectionCompany.AsQueryable<Company>() select c).FirstOrDefault();
             Transport t = new Transport() { Type="Bus"};
+            Transport t1 = new Transport() { Type = "Vagon" };
+            Transport t2 = new Transport() { Type = "Voz" };
             Station s1 = new Station() { Address = "bulevar", Lat = 54, Lon = 32, Lines = { 3,22, 6 }, Name = "prva", Zone = 32 };
             Station s2 = new Station() { Address = "bulevar22", Lat = 389, Lon = 349, Lines = { 83, 43,22 }, Name = "druga", Zone = 33 };
             Station s3 = new Station() { Address = "bulevarZ", Lat = 289, Lon = 239, Lines = { 22, 42, 61 }, Name = "treca", Zone = 34 };
@@ -141,7 +143,9 @@ namespace MongoLayer.ManipulationModels
 
             if (Company != null)
             {
-                t.Company = new MongoDBRef("Company", ObjectId.Parse("5a833b85de3456315450257c"));
+                t.Company = new MongoDBRef("Company",Company.Id);
+                t1.Company = new MongoDBRef("Company", Company.Id);
+                t2.Company = new MongoDBRef("Company", Company.Id);
 
             }
             collectionStation.Insert(s1);
@@ -156,6 +160,8 @@ namespace MongoLayer.ManipulationModels
             collectionStation.Insert(s10);
 
             collectionTransport.Insert(t);
+            collectionTransport.Insert(t1);
+            collectionTransport.Insert(t2);
             if (Company != null)
             {
                 Company.Transports.Add(new MongoDBRef("Transport", t.Id));
