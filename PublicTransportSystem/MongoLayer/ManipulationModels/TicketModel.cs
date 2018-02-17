@@ -104,7 +104,7 @@ namespace MongoLayer.ManipulationModels
             }
         }
 
-       public static void BuyNewClassicTicket(Classic ticket)
+       public static ObjectId BuyNewClassicTicket(Classic ticket)
         {
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
@@ -113,9 +113,11 @@ namespace MongoLayer.ManipulationModels
 
             var collectionTicket = db.GetCollection<Ticket>("Ticket");
             collectionTicket.Insert(ticket);
+
+            return ticket.Id;
         }
 
-        public static void BuyNewTimeTicket(TimeTicket ticket)
+        public static ObjectId BuyNewTimeTicket(TimeTicket ticket)
         {
             
                 var connectionString = "mongodb://localhost/?safe=true";
@@ -125,7 +127,8 @@ namespace MongoLayer.ManipulationModels
 
                 var collectionTicket = db.GetCollection<Ticket>("Ticket");
                 collectionTicket.Insert(ticket);
-            
+
+                 return ticket.Id;
         }
     }
 }

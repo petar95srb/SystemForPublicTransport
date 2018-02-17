@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MongoLayer.ModelViews
 {
-    class RideViewTimeTable
+    public class RideViewTimeTable
     {
         public string Line { get; set; }
         public string TransportType { get; set; }
