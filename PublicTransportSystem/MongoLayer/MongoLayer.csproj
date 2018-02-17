@@ -84,6 +84,7 @@
     <Compile Include="Models\Vehical.cs" />
     <Compile Include="ModelViews\AlertView.cs" />
     <Compile Include="ModelViews\RideView.cs" />
+    <Compile Include="ModelViews\RideViewTimeTable.cs" />
     <Compile Include="ModelViews\RoutView.cs" />
     <Compile Include="ModelViews\TransportView.cs" />
     <Compile Include="ModelViews\VehicalView.cs" />
