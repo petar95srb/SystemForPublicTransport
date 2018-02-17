@@ -191,5 +191,11 @@ namespace PublicTransportSystem
             //}
             //updateMapLines();
         }
+
+        private void Timetable_Click(object sender, EventArgs e)
+        {
+            PublicTransportSystem.Time_Table tb = new Time_Table();
+            tb.Show();
+        }
     }
 }
