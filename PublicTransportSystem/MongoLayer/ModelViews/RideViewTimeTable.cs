@@ -11,7 +11,7 @@ namespace MongoLayer.ModelViews
         public string Line { get; set; }
         public string TransportType { get; set; }
         public string StartTime { get; set; }
-        public string EndTime { get; set; }
+        public string EndTime { get; set; }//hh:mm:ss
         public string CurrentStation { get; set; }
     }
 }
