@@ -169,16 +169,10 @@ namespace MongoLayer.ManipulationModels
             }
            
             rid1.CurrentStation = new MongoDBRef("Station", s1.Id);
-            rid1.CurrentStation = new MongoDBRef("Station", s2.Id);
-            rid1.CurrentStation = new MongoDBRef("Station", s3.Id);
-            rid1.CurrentStation = new MongoDBRef("Station", s4.Id);
-            rid1.CurrentStation = new MongoDBRef("Station", s5.Id);
+           
 
-            rid2.CurrentStation = new MongoDBRef("Station", s6.Id);
-            rid2.CurrentStation = new MongoDBRef("Station", s7.Id);
-            rid2.CurrentStation = new MongoDBRef("Station", s8.Id);
-            rid2.CurrentStation = new MongoDBRef("Station", s9.Id);
-            rid2.CurrentStation = new MongoDBRef("Station", s10.Id);
+            rid2.CurrentStation = new MongoDBRef("Station", s1.Id);
+          
 
             collectionRide.Insert(rid1);
             collectionRide.Insert(rid2);
@@ -196,7 +190,8 @@ namespace MongoLayer.ManipulationModels
             rout1.Stations.Add(new MongoDBRef("Station", s8.Id));
             rout1.Stations.Add(new MongoDBRef("Station", s9.Id));
             rout1.Transport = new MongoDBRef("Transport", t.Id);
-           
+            rout2.Transport = new MongoDBRef("Transport", t2.Id);
+
             collectionRoute.Insert(rout1);
             collectionRoute.Insert(rout2);
 
@@ -205,6 +200,7 @@ namespace MongoLayer.ManipulationModels
 
             var Vehical = (from v in collectionVehical.AsQueryable() select v);
             bool one = true;
+            bool two = true;
             foreach(var v in Vehical)
             {
                 t.Vehicals.Add(new MongoDBRef("Vehical", v.Id));
@@ -214,6 +210,11 @@ namespace MongoLayer.ManipulationModels
                 {
                     rid1.Vehical = new MongoDBRef("Vehical", v.Id);
                     one = false;
+                }
+                if (two == true)
+                {
+                    rid2.Vehical = new MongoDBRef("Vehical", v.Id);
+                    two = false;
                 }
                 collectionVehical.Save(v);
             }
@@ -264,10 +265,6 @@ namespace MongoLayer.ManipulationModels
             var collectionTicket = db.GetCollection<Ticket>("Ticket");
 
 
-
-            //TransportCount tc1 = new TransportCount() { NumOfRides = 23, TransportType = "Bus" };
-            //TransportCount tc2 = new TransportCount() { NumOfRides = 2, TransportType = "Metro" };
-            //TransportCount tc3 = new TransportCount() { NumOfRides = 19, TransportType = "Brod" };
 
             Classic clasicTicket = new Classic() { Type = "classic" };
             clasicTicket.DynamicFields.Add("Bus",15);

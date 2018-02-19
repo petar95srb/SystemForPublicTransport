@@ -79,7 +79,6 @@
     <Compile Include="Models\TimeTable.cs" />
     <Compile Include="Models\TimeTicket.cs" />
     <Compile Include="Models\Transport.cs" />
-    <Compile Include="Models\TransportCount.cs" />
     <Compile Include="Models\Vagon.cs" />
     <Compile Include="Models\Vehical.cs" />
     <Compile Include="ModelViews\AlertView.cs" />
