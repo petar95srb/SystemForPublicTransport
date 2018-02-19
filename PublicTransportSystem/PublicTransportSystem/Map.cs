@@ -84,7 +84,19 @@ namespace PublicTransportSystem
             render.FillEllipse(Brushes.Black, (float)st.Lat - wight/2, (float)st.Lon - height/2, (wight), (height));
         }
 
+        public void DrawVihecals(List<RideView> vhs)
+        {
+            for (int i = 0; i < vhs.Count; i++)
+            {
+                render.FillEllipse(Brushes.Red, (float)vhs[i].CurrentStation.Lat - wight / 4, (float)vhs[i].CurrentStation.Lon - height / 4, wight/2, height/2);
+               
+            }
+        }
 
+        public void DrawStart(Station st)
+        {
+            render.DrawEllipse(Pens.Red, (float)(st.Lat - (wight * 1.2) / 2), (float)(st.Lon - (height * 1.2) / 2), (float)(wight * 1.2), (float)(height * 1.2));
+        }
 
     }
 }

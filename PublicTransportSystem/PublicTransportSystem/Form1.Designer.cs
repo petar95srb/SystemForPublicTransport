@@ -105,6 +105,7 @@
             this.Timetable.TabIndex = 2;
             this.Timetable.Text = "Time table";
             this.Timetable.UseVisualStyleBackColor = true;
+            this.Timetable.Click += new System.EventHandler(this.Timetable_Click);
             // 
             // Client
             // 
